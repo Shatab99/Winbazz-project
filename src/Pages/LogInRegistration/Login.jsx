@@ -31,7 +31,7 @@ const Login = ({setShowReg}) => {
                     </div>
                 </label>
                 <button className="">Forget Password</button>
-                <button className="btn w-full">
+                <button className="btn w-full bg-orange-600 hover:bg-orange-800 text-white">
                     Log In
                 </button>
                 <p>

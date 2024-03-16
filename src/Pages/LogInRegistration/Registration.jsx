@@ -80,7 +80,7 @@ const Registration = ({setIsOpen, setShowReg}) => {
                     loading ? <button className="btn w-full">
                         <VscLoading className="text-2xl font-bold animate-spin"/>
                     </button> :
-                        <button className="btn w-full">
+                        <button className="btn w-full bg-orange-600 hover:bg-orange-800 text-white">
                             Register
                         </button>
                 }
