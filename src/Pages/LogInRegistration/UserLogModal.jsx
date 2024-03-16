@@ -10,7 +10,7 @@ const UserLogModal = ({isOpen, setIsOpen, showReg , setShowReg}) => {
         <>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen} setShowReg={setShowReg}>
                 {
-                    showReg ? <Registration/>:<Login/>
+                    showReg ? <Registration setShowReg={setShowReg} setIsOpen={setIsOpen}/>:<Login setShowReg={setShowReg}/>
                 }
             </Modal>
         </>

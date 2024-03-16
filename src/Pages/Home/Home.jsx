@@ -1,5 +1,8 @@
+import Games from "../Game/Games";
 import Banner from "./Banner";
+import Footer from "./Footer";
 import Notice from "./Notice";
+import SecondBanner from "./SecondBanner";
 
 
 const Home = () => {
@@ -7,6 +10,9 @@ const Home = () => {
         <div>
             <Notice/>
             <Banner/>
+            <Games/>
+            <SecondBanner/>
+            <Footer/>
         </div>
     );
 };

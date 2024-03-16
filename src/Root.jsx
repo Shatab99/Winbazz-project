@@ -5,9 +5,8 @@ import Navbar from "./Pages/Navbar";
 const Root = () => {
     return (
         <>
-            <Navbar>
-                <Outlet/>
-            </Navbar>
+            <Navbar />
+            <Outlet />
         </>
     );
 };

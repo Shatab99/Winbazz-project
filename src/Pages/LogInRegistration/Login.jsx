@@ -4,7 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 
 
-const Login = () => {
+const Login = ({setShowReg}) => {
 
     const [showPass, setShowPass] = useState(false)
     const [pass, setPass] = useState(0)
@@ -15,7 +15,7 @@ const Login = () => {
             <div className="flex flex-col items-center gap-4 ">
                 <label className="input input-bordered flex items-center gap-2 relative">
                     <MdEmail />
-                    <input type="text" className="grow " placeholder="Email" />
+                    <input type="email" className="grow " placeholder="Email" />
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
                     <FaUnlockKeyhole />
@@ -34,6 +34,9 @@ const Login = () => {
                 <button className="btn w-full">
                     Log In
                 </button>
+                <p>
+                    {`Don't`} have Account ? <span onClick={()=> setShowReg(true)} className="font-bold text-blue-800 cursor-pointer">Register</span>
+                </p>
             </div>
         </>
     );
