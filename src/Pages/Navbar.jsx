@@ -8,14 +8,11 @@ const Navbar = ({ children }) => {
     const [showReg, setShowReg] = useState(false)
 
     const nav = <>
-        <ul className="menu menu-horizontal">
-            {/* Navbar menu content here */}
-            <li><button onClick={() => setIsOpen(true)} className='font-bold' >Log In</button></li>
-            <li><button onClick={() => {
-                setIsOpen(true);
-                setShowReg(true);
-            }} className='font-bold'>Registration</button></li>
-        </ul>
+        <li><button onClick={() => setIsOpen(true)} className='font-bold' >Log In</button></li>
+        <li><button onClick={() => {
+            setIsOpen(true);
+            setShowReg(true);
+        }} className='font-bold'>Registration</button></li>
     </>
 
     return (
@@ -31,16 +28,21 @@ const Navbar = ({ children }) => {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                             </label>
                         </div>
-                        <div className="flex-1 px-2 mx-2"><img src={logo} alt="Error" className='w-28 ' /></div>
+                        <div className="lg:flex-1 px-2 mx-2"><img src={logo} alt="Error" className='w-28 ' /></div>
                         <div className="flex-none hidden lg:block">
-                            {nav}
+                            <ul className="menu menu-horizontal">
+                                {nav}
+                            </ul>
                         </div>
                     </div>
                     {children}
                 </div>
-                <div className="drawer-side">
+                <div className="drawer-side z-50">
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-                    {nav}
+                    <ul className="menu p-4 w-80 min-h-full bg-base-200">
+                        {nav}
+                    </ul>
+
                 </div>
             </div>
         </div>

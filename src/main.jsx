@@ -7,15 +7,16 @@ import {
 import './index.css'
 import Root from './Root';
 import Home from './Pages/Home/Home';
+import AuthProvider from './Providers/AuthProvider';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root/>,
-    children : [
+    element: <Root />,
+    children: [
       {
-        path : '/',
-        element : <Home/>
+        path: '/',
+        element: <Home />
       }
     ]
   },
@@ -23,6 +24,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )
