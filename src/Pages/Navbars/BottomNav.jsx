@@ -11,7 +11,7 @@ const BottomNav = () => {
 
         <div className="w-full lg:hidden">
             <section id="bottom-navigation" className="block fixed inset-x-0 bottom-0 z-10 bg-orange-100 shadow px-2">
-                <div id="tabs" className="flex justify-between">
+                <div id="tabs" className="flex justify-center">
                     <Link href="#" className="w-full focus:text-orange-500 hover:text-orange-500 flex items-center flex-col text-center pt-2 pb-1">
                         <FaRegMessage className="text-3xl" />
                         <span className="tab tab-home block text-xs">Messages</span>
