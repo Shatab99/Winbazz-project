@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
-import logo from '../assets/Logo/logo.png'
-import UserLogModal from './LogInRegistration/UserLogModal';
-import { AuthContext } from '../Providers/AuthProvider';
+import logo from '../../assets/Logo/logo.png'
+import UserLogModal from '../LogInRegistration/UserLogModal';
+import { AuthContext } from '../../Providers/AuthProvider';
 import { GoPlusCircle } from "react-icons/go";
 
 const Navbar = () => {
@@ -54,12 +54,12 @@ const Navbar = () => {
                         user && <>
                             <div className='border-2 border-orange-600 px-3 rounded-3xl flex items-center gap-1'>
                                 <GoPlusCircle />
-                                <p>৳ 0.00 Tk</p>
+                                <p>৳ 0.00 BDT</p>
                             </div>
                         </>
                     }
                 </div>
-                <div className="navbar-end gap-3">
+                <div className="navbar-end gap-3 ml-2">
                     {nav}
                 </div>
             </div>
