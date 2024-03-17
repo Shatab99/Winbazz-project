@@ -17,7 +17,7 @@ const Deposite = () => {
 
     return (
         <div>
-            <p className="text-lg w-full text-center bg-black p-2 font-semibold text-orange-300">Make Your Deposite</p>
+            <p className="text-lg w-full text-center bg-black p-2 font-semibold text-orange-300">Make Your Deposit</p>
             <div className="p-4 mb-16">
 
                 <div className='mb-4'>
@@ -43,7 +43,7 @@ const Deposite = () => {
                     </div>
                 </div>
                 <div className='mb-4 flex flex-col gap-3'>
-                    <input type="number" placeholder="Enter Amount Here" className="input input-bordered w-full max-w-sm" value={amount}/>
+                    <input type="number" placeholder="Enter Amount Here" className="input input-bordered w-full max-w-sm" disabled value={amount}/>
                     <button onClick={()=> setIsOpen(true)} className='btn text-lg bg-orange-600 text-white hover:bg-orange-800 ' disabled={ !method|| !amount } >Deposite</button>
                 </div>
                 <DepositeModal isOpen={isOpen} setIsOpen={setIsOpen} amount={amount} method={method} />

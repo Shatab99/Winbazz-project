@@ -24,7 +24,7 @@ const BottomNav = () => {
                             </Link>
                             <Link to={'/deposite'} className="w-full focus:text-orange-500 hover:text-orange-500 flex items-center flex-col text-center pt-2 pb-1">
                                 <GiWallet className="text-2xl" />
-                                <span className="tab tab-kategori block text-xs text-white">Deposite</span>
+                                <span className="tab tab-kategori block text-xs text-white">Deposit</span>
                             </Link>
                             <Link to={'/'} className="w-full focus:text-orange-500 hover:text-orange-500 flex items-center flex-col text-center pt-2 pb-1">
                                 <IoHome className="text-2xl" />
