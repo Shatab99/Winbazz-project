@@ -52,7 +52,7 @@ const Navbar = () => {
                         user && <>
                             <div className='border-2 border-orange-600 px-3 rounded-3xl flex items-center '>
                                 <GoPlusCircle />
-                                <p>৳ 0.00 BDT</p>
+                                <p className='font-semibold'>৳ 0.00 BDT</p>
                             </div>
                         </>
                     }

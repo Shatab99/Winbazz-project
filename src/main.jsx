@@ -9,6 +9,11 @@ import Root from './Root';
 import Home from './Pages/Home/Home';
 import AuthProvider from './Providers/AuthProvider';
 import { Toaster } from 'react-hot-toast';
+import Deposite from './Pages/Deposite/Deposite';
+import PrivateRoute from './Providers/PrivateRoute';
+import Withdraw from './Pages/Withdraw/Withdraw';
+import Refer from './Pages/Refer/Refer';
+import Profile from './Pages/Profile/Profile';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +23,23 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />
-      }
+      },
+      {
+        path : '/deposite',
+        element : <PrivateRoute><Deposite/></PrivateRoute>
+      },
+      {
+        path : "/withdraw",
+        element : <PrivateRoute><Withdraw/></PrivateRoute>
+      },
+      {
+        path : "/refer",
+        element : <PrivateRoute><Refer/></PrivateRoute>
+      },
+      {
+        path : "/profile",
+        element : <PrivateRoute><Profile/></PrivateRoute>
+      },
     ]
   },
 ]);
