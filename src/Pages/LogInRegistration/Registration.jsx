@@ -4,7 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { updateProfile } from "firebase/auth";
+import { sendEmailVerification, updateProfile } from "firebase/auth";
 import { VscLoading } from "react-icons/vsc";
 import toast from "react-hot-toast";
 
@@ -34,6 +34,11 @@ const Registration = ({ setIsOpen, setShowReg }) => {
                     .catch(err => {
                         console.log(err.message)
                     })
+
+                sendEmailVerification(res.user)
+                .then(()=>{
+                    toast.success("Verification Link Sent To Your Mail !!")
+                })
                 toast.success("Successfully Registered !!")
                 setLoading(false)
                 setIsOpen(false)

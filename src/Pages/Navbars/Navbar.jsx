@@ -12,14 +12,16 @@ const Navbar = () => {
 
     const handleLogOut =()=>{
         logOut().then(res=> console.log(res)).catch(err=> console.log(err.message))
-    }   
+    }  
+    
+    const userName = user?.displayName?.split(' ')[0]
 
     const nav = <>
         {
             user ? <>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="">
-                        <p className='font-semibold'>Hey , {user?.displayName}</p>
+                        <p className='font-semibold'>Hey , {userName}</p>
                     </div>
                     <ul tabIndex={0} className="menu z-40 menu-sm dropdown-content mt-3  p-2 shadow bg-base-100 rounded-box w-52">
                         <li><a onClick={handleLogOut}>Logout</a></li>
