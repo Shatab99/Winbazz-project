@@ -15,7 +15,7 @@ const Deposite = () => {
     return (
         <div>
             <p className="text-lg w-full text-center bg-black p-2 font-semibold text-orange-300">Make Your Deposite</p>
-            <div className="p-4">
+            <div className="p-4 mb-6">
 
                 <div className='mb-4'>
                     <h1 className="text-lg font-semibold">Select Payment Methode</h1>
