@@ -10,7 +10,9 @@ const Deposite = () => {
     const [amount , setAmount] = useState(null)
     const [method, setMethod] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
+    const [len, setLen]= useState(0)
     
+    console.log(len)
 
     return (
         <div>
@@ -40,8 +42,11 @@ const Deposite = () => {
                     </div>
                 </div>
                 <div className='mb-4 flex flex-col gap-3'>
-                    <input type="text" onClick={()=>setAmount(null)}  placeholder="Enter Amount Here" className="input input-bordered w-full max-w-sm" value={amount}/>
-                    <button onClick={()=> setIsOpen(true)} className='btn text-lg bg-orange-600 text-white hover:bg-orange-800 ' disabled={!amount || !method} >Deposite</button>
+                    <input onChange={(e)=> {
+                        setLen(e.target.value.length);
+                        setAmount(e.target.value)
+                    }}  type="number" onClick={()=>setAmount(null)}  placeholder="Enter Amount Here" className="input input-bordered w-full max-w-sm" value={amount}/>
+                    <button onClick={()=> setIsOpen(true)} className='btn text-lg bg-orange-600 text-white hover:bg-orange-800 ' disabled={ !method|| (!amount && len===0)} >Deposite</button>
                 </div>
                 <DepositeModal isOpen={isOpen} setIsOpen={setIsOpen} amount={amount} method={method} />
             </div>
