@@ -2,6 +2,7 @@ import { useState } from 'react';
 import bikash from '../../assets/Icons/BKash-Icon-Logo.wine.svg'
 import nagad from '../../assets/Icons/Nagad-Logo.wine.png'
 import upay from '../../assets/Icons/upay-icon.png'
+import rocket from '../../assets/Icons/rocket-logo.png'
 import DepositeModal from './DepositeModal';
 
 
@@ -10,28 +11,28 @@ const Deposite = () => {
     const [amount , setAmount] = useState(null)
     const [method, setMethod] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
-    const [len, setLen]= useState(0)
+    // const [len, setLen]= useState(0)
+    // const [err, setErr]= useState(null)
     
-    console.log(len)
 
     return (
         <div>
             <p className="text-lg w-full text-center bg-black p-2 font-semibold text-orange-300">Make Your Deposite</p>
-            <div className="p-4 mb-6">
+            <div className="p-4 mb-16">
 
                 <div className='mb-4'>
-                    <h1 className="text-lg font-semibold">Select Payment Methode</h1>
-                    <div className='flex items-center justify-start mt-4 gap-2'>
+                    <h1 className="text-lg font-semibold">Select Payment Method</h1>
+                    <div className='flex flex-wrap items-center justify-start mt-4 gap-2'>
                         <img onClick={()=>setMethod('Bkash')} src={bikash} alt="" className={`w-24 h-20 border-2 rounded-2xl ${method === 'Bkash' && 'border-orange-400'} rounded-xl`} />
                         <img onClick={()=>setMethod('Nagad')} src={nagad} alt="" className={`w-24 h-20 border-2 rounded-2xl ${method === 'Nagad' && 'border-orange-400'} rounded-xl`}  />
                         <img onClick={()=>setMethod('Upay')} src={upay} alt="" className={`w-24 h-20 border-2 rounded-2xl ${method === 'Upay' && 'border-orange-400'} rounded-xl`}  />
+                        <img onClick={()=>setMethod('Rocket')} src={rocket} alt="" className={`w-24 h-20 border-2 rounded-2xl ${method === 'Rocket' && 'border-orange-400'} rounded-xl`}  />
                     </div>
                 </div>
 
                 <div className='mb-4'>
                     <h1 className="text-lg font-semibold">Select Amount</h1>
                     <div className='grid grid-cols-4 mt-3 gap-2'>
-                        <p onClick={()=>setAmount(100)} className={`bg-black p-1 text-yellow-200 text-center rounded-2xl text-lg ${amount === 100 && 'bg-orange-500'}`} >100</p>
                         <p onClick={()=>setAmount(200)}  className={`bg-black p-1 text-yellow-200 text-center rounded-2xl text-lg ${amount === 200 && 'bg-orange-500'}`} >200</p>
                         <p onClick={()=>setAmount(500)}  className={`bg-black p-1 text-yellow-200 text-center rounded-2xl text-lg ${amount === 500 && 'bg-orange-500'}`} >500</p>
                         <p onClick={()=>setAmount(1000)}  className={`bg-black p-1 text-yellow-200 text-center rounded-2xl text-lg ${amount === 1000 && 'bg-orange-500'}`} >1000</p>
@@ -42,11 +43,8 @@ const Deposite = () => {
                     </div>
                 </div>
                 <div className='mb-4 flex flex-col gap-3'>
-                    <input onChange={(e)=> {
-                        setLen(e.target.value.length);
-                        setAmount(e.target.value)
-                    }}  type="number" onClick={()=>setAmount(null)}  placeholder="Enter Amount Here" className="input input-bordered w-full max-w-sm" value={amount}/>
-                    <button onClick={()=> setIsOpen(true)} className='btn text-lg bg-orange-600 text-white hover:bg-orange-800 ' disabled={ !method|| (!amount && len===0)} >Deposite</button>
+                    <input type="number" placeholder="Enter Amount Here" className="input input-bordered w-full max-w-sm" value={amount}/>
+                    <button onClick={()=> setIsOpen(true)} className='btn text-lg bg-orange-600 text-white hover:bg-orange-800 ' disabled={ !method|| !amount } >Deposite</button>
                 </div>
                 <DepositeModal isOpen={isOpen} setIsOpen={setIsOpen} amount={amount} method={method} />
             </div>

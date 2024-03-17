@@ -2,6 +2,7 @@ import Modal from "../../Components/Modal";
 import bikash from '../../assets/Icons/BKash-Icon-Logo.wine.svg'
 import nagad from '../../assets/Icons/Nagad-Logo.wine.png'
 import upay from '../../assets/Icons/upay-icon.png'
+import rocket from '../../assets/Icons/rocket-logo.png'
 
 
 const DepositeModal = ({ isOpen, setIsOpen, method, amount }) => {
@@ -12,6 +13,7 @@ const DepositeModal = ({ isOpen, setIsOpen, method, amount }) => {
                     {method === 'Bkash' && <img src={bikash} alt="" className="rounded-full border-orange-400 border-2 w-24 h-24" />}
                     {method === 'Nagad' && <img src={nagad} alt="" className="rounded-full border-orange-400 border-2 w-24 h-24" />}
                     {method === 'Upay' && <img src={upay} alt="" className="rounded-full border-orange-400 border-2 w-24 h-24" />}
+                    {method === 'Rocket' && <img src={rocket} alt="" className="rounded-full border-orange-400 border-2 w-24 h-24" />}
                     <div className="flex flex-col items-start text-lg gap-2">
                         <p>Payment Method : {method} </p>
                         <p>Payment Amount : ৳ {amount} BDT </p>
