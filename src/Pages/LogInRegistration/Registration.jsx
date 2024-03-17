@@ -5,11 +5,11 @@ import { useContext, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
-import Swal from "sweetalert2";
 import { VscLoading } from "react-icons/vsc";
+import toast from "react-hot-toast";
 
 
-const Registration = ({setIsOpen, setShowReg}) => {
+const Registration = ({ setIsOpen, setShowReg }) => {
 
     const { register, loading, setLoading } = useContext(AuthContext)
     const [showPass, setShowPass] = useState(false)
@@ -24,7 +24,7 @@ const Registration = ({setIsOpen, setShowReg}) => {
         const password = form.password.value
         register(email, password)
             .then(res => {
-                console.log(res?.user)
+                console.log(res)
                 updateProfile(res.user, {
                     displayName: name
                 })
@@ -34,19 +34,13 @@ const Registration = ({setIsOpen, setShowReg}) => {
                     .catch(err => {
                         console.log(err.message)
                     })
-                alert("Successfully registered")
+                toast.success("Successfully Registered !!")
                 setLoading(false)
                 setIsOpen(false)
 
             })
             .catch(err => {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "error",
-                    title: `${err.message}`,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                toast.error(err.message)
                 setLoading(false)
             })
     }
@@ -57,11 +51,11 @@ const Registration = ({setIsOpen, setShowReg}) => {
             <form onSubmit={handleRegister} className="flex flex-col items-center gap-4 ">
                 <label className="input input-bordered flex items-center gap-2">
                     <FaUser />
-                    <input type="text" name="name" className="grow" placeholder="Username" />
+                    <input type="text" name="name" className="grow" placeholder="Username" required />
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
                     <MdEmail />
-                    <input type="email" name="email" className="grow " placeholder="Email" />
+                    <input type="email" name="email" className="grow " placeholder="Email" required/>
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
                     <FaUnlockKeyhole />
@@ -73,18 +67,18 @@ const Registration = ({setIsOpen, setShowReg}) => {
                                     :
                                     <FaEye onClick={() => setShowPass(true)} className="absolute right-0 top-0 text-2xl cursor-pointer" />
                         }
-                        <input name="password" onChange={(e) => setPass(e.target.value.length)} type={showPass ? 'text' : 'password'} className="grow" placeholder="Password" />
+                        <input name="password" onChange={(e) => setPass(e.target.value.length)} type={showPass ? 'text' : 'password'} className="grow" placeholder="Password" required/>
                     </div>
                 </label>
                 {
                     loading ? <button className="btn w-full">
-                        <VscLoading className="text-2xl font-bold animate-spin"/>
+                        <VscLoading className="text-2xl font-bold animate-spin" />
                     </button> :
                         <button className="btn w-full bg-orange-600 hover:bg-orange-800 text-white">
                             Register
                         </button>
                 }
-                <p>Already Have Account ? <span onClick={()=> setShowReg(false)} className="font-bold text-blue-800 cursor-pointer">Log In</span></p>
+                <p>Already Have Account ? <span onClick={() => setShowReg(false)} className="font-bold text-blue-800 cursor-pointer">Log In</span></p>
             </form>
         </>
     );
