@@ -22,11 +22,6 @@ const Navbar = () => {
                         <p className='font-semibold'>Hey , {user?.displayName}</p>
                     </div>
                     <ul tabIndex={0} className="menu z-40 menu-sm dropdown-content mt-3  p-2 shadow bg-base-100 rounded-box w-52">
-                        <li>
-                            <a className="justify-between">
-                                Profile
-                            </a>
-                        </li>
                         <li><a onClick={handleLogOut}>Logout</a></li>
                     </ul>
                 </div>
