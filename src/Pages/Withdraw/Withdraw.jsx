@@ -26,7 +26,7 @@ const Withdraw = () => {
 
 
     return (
-        <div className="mx-auto mb-12">
+        <div className="mx-auto mb-24">
             <h1 className="text-lg w-full text-center bg-black p-2 font-semibold text-orange-300">Make Your Withdraw Here</h1>
             <div className="max-w-xs mx-auto bg-[#333333] px-6 py-4 my-6 rounded-xl flex flex-col items-center gap-3">
                 <p className="text-white text-xl flex items-center gap-5">
