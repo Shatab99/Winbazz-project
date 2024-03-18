@@ -7,6 +7,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { sendEmailVerification, updateProfile } from "firebase/auth";
 import { VscLoading } from "react-icons/vsc";
 import toast from "react-hot-toast";
+import { useCreatUserMutation } from "../../Redux/features/EndPoints/userApi";
 
 
 const Registration = ({ setIsOpen, setShowReg }) => {
@@ -14,6 +15,10 @@ const Registration = ({ setIsOpen, setShowReg }) => {
     const { register, loading, setLoading } = useContext(AuthContext)
     const [showPass, setShowPass] = useState(false)
     const [pass, setPass] = useState(0)
+    const [createUser , {data, error}] = useCreatUserMutation()
+
+    console.log(data)
+    console.log(error)
 
     const handleRegister = e => {
         e.preventDefault();
@@ -25,6 +30,7 @@ const Registration = ({ setIsOpen, setShowReg }) => {
         register(email, password)
             .then(res => {
                 console.log(res)
+                createUser({name, email})
                 updateProfile(res.user, {
                     displayName: name
                 })

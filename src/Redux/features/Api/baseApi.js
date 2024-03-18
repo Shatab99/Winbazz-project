@@ -1,0 +1,10 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
+const baseApi = createApi({
+    reducerPath: 'baseApi',
+    baseQuery : fetchBaseQuery({baseUrl : 'https://winbaz88-server.onrender.com'}),
+    tagTypes : ['users'],
+    endpoints : ()=>({})
+})
+
+export default baseApi

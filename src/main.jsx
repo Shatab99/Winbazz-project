@@ -14,6 +14,9 @@ import PrivateRoute from './Providers/PrivateRoute';
 import Withdraw from './Pages/Withdraw/Withdraw';
 import Refer from './Pages/Refer/Refer';
 import Profile from './Pages/Profile/Profile';
+import { Provider } from 'react-redux';
+import { store } from './Redux/store';
+import Users from './Pages/Profile/Users';
 
 const router = createBrowserRouter([
   {
@@ -25,20 +28,26 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path : '/deposite',
-        element : <PrivateRoute><Deposite/></PrivateRoute>
+        path: '/deposite',
+        element: <PrivateRoute><Deposite /></PrivateRoute>
       },
       {
-        path : "/withdraw",
-        element : <PrivateRoute><Withdraw/></PrivateRoute>
+        path: "/withdraw",
+        element: <PrivateRoute><Withdraw /></PrivateRoute>
       },
       {
-        path : "/refer",
-        element : <PrivateRoute><Refer/></PrivateRoute>
+        path: "/refer",
+        element: <PrivateRoute><Refer /></PrivateRoute>
       },
       {
-        path : "/profile",
-        element : <PrivateRoute><Profile/></PrivateRoute>
+        path: "/profile",
+        element: <PrivateRoute><Profile /></PrivateRoute>,
+        children : [
+          {
+            path : 'users',
+            element : <PrivateRoute><Users/></PrivateRoute>
+          }
+        ]
       },
     ]
   },
@@ -46,12 +55,14 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-      <Toaster
-        position="bottom-center"
-        reverseOrder={false}
-      />
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <Toaster
+          position="bottom-center"
+          reverseOrder={false}
+        />
+      </AuthProvider>
+    </Provider>
   </React.StrictMode>,
 )
