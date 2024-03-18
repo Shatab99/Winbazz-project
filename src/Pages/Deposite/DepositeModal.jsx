@@ -20,7 +20,7 @@ const DepositeModal = ({ isOpen, setIsOpen, method, amount }) => {
                     </div>
                     <div className="flex items-center gap-3">
                         <button onClick={()=>setIsOpen(false)} className="btn btn-sm bg-red-700 text-white hover:bg-red-800">Cancel</button>
-                        <button onClick={()=>setIsOpen(false)} className="btn btn-sm bg-blue-600 text-white hover:bg-blue-800">Deposite</button>
+                        <button onClick={()=>setIsOpen(false)} className="btn btn-sm bg-blue-600 text-white hover:bg-blue-800">Deposit</button>
                     </div>
                 </div>
             </Modal>
