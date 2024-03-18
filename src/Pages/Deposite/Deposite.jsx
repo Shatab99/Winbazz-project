@@ -43,7 +43,8 @@ const Deposite = () => {
                     </div>
                 </div>
                 <div className='mb-4 flex flex-col gap-3'>
-                    <input type="number" placeholder="Enter Amount Here" className="input input-bordered w-full max-w-sm" disabled value={amount}/>
+                    {/* <input type="number" placeholder="Enter Amount Here" className="input input-bordered w-full max-w-sm font-bold text-black" disabled value={amount}/> */}
+                    <div className='max-w-sm w-full border-2 border-black p-4 rounded-xl text-lg font-semibold'>{amount ? `You have Seleceted ৳ ${amount} BDT` : 'Please Select Amount Above'}</div>
                     <button onClick={()=> setIsOpen(true)} className='btn text-lg bg-orange-600 text-white hover:bg-orange-800 ' disabled={ !method|| !amount } >Deposite</button>
                 </div>
                 <DepositeModal isOpen={isOpen} setIsOpen={setIsOpen} amount={amount} method={method} />
