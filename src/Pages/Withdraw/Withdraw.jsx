@@ -59,9 +59,9 @@ const Withdraw = () => {
                     <p className="mb-4">Enter Phone Number <span className="text-red-600">*</span></p>
                     <input onChange={(e)=> setPhone(e.target.value)} type="number" placeholder="Enter your phone Number " className="input input-bordered w-full max-w-sm" />
                 </div>
-                <button onClick={()=>setIsOpen(true)} disabled={!amount || amount < 800 || amount > balance || !method || phone?.length <11 | !phone } className="btn bg-blue-700 text-white w-full ">Withdraw</button>
+                <button onClick={()=>setIsOpen(true)} disabled={!amount || amount < 800 || amount > balance || !method || phone?.length !== 11 | !phone  } className="btn bg-blue-700 text-white w-full ">Withdraw</button>
             </div>
-            <WithdrawModal isOpen={isOpen} setIsOpen={setIsOpen} method={method} amount={amount} />
+            <WithdrawModal isOpen={isOpen} setIsOpen={setIsOpen} method={method} amount={amount} phone={phone}/>
         </div>
     );
 };
