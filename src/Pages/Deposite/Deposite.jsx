@@ -21,7 +21,7 @@ const Deposite = () => {
             <div className="p-4 mb-16">
 
                 <div className='mb-4'>
-                    <h1 className="text-lg font-semibold">Select Payment Method</h1>
+                    <h1 className="text-lg font-semibold">Select Payment Methods</h1>
                     <div className='flex flex-wrap items-center justify-start mt-4 gap-2'>
                         <img onClick={()=>setMethod('Bkash')} src={bikash} alt="" className={`w-24 h-20 border-2 rounded-2xl ${method === 'Bkash' && 'border-orange-400'} rounded-xl`} />
                         <img onClick={()=>setMethod('Nagad')} src={nagad} alt="" className={`w-24 h-20 border-2 rounded-2xl ${method === 'Nagad' && 'border-orange-400'} rounded-xl`}  />

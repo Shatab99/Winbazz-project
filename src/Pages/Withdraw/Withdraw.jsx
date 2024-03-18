@@ -24,7 +24,7 @@ const Withdraw = () => {
             setErr('Minimum 800 BDT')
         }
         else if (amount > balance) {
-            setErr('Not Enought Balance')
+            setErr('Not Enough Balance')
         }
 
         else {
@@ -36,19 +36,19 @@ const Withdraw = () => {
     return (
         <div className="mx-auto mb-24">
             <h1 className="text-lg w-full text-center bg-black p-2 font-semibold text-orange-300">Make Your Withdraw Here</h1>
-            <div className="max-w-xs mx-auto bg-[#333333] px-6 py-4 my-6 rounded-xl flex flex-col items-center gap-3">
-                <p className="text-white text-xl flex items-center gap-5">
+            <div className="max-w-xs mx-auto bg-[#333333] px-6 py-4 my-6 rounded-xl flex flex-col items-center gap-1">
+                <p className="text-white text-xl flex items-center gap-2">
                     <span>Balance</span> <IoReload />
                 </p>
-                <p className="text-orange-300">
+                <p className="text-orange-300 font-bold">
                     ৳ {balance} BDT
                 </p>
             </div>
             <div className="flex flex-col items-start max-w-xs justify-center mx-auto gap-5">
                 <p>Select Amount <span className="text-red-600">*</span></p>
-                <input onChange={(e) => setAmount(e.target.value)} type="number" placeholder="Minimum 800 BDT - Maximum 30000 BDT " className="input input-bordered w-full max-w-xs" />
+                <input onChange={(e) => setAmount(e.target.value)} type="number" placeholder="Minimum 800 BDT - Maximum 30000 BDT " className="input input-bordered w-full max-w-xs font-bold" />
                 <p className="text-red-700">{err}</p>
-                <p>Select Payment Method <span className="text-red-600">*</span></p>
+                <p>Select Payment Methods <span className="text-red-600">*</span></p>
                 <div className='flex flex-wrap items-center justify-start mt-4 gap-2'>
                     <img onClick={() => setMethod('Bkash')} src={bikash} alt="" className={`w-24 h-20 border-2 rounded-2xl ${method === 'Bkash' && 'border-orange-400'} rounded-xl`} />
                     <img onClick={() => setMethod('Nagad')} src={nagad} alt="" className={`w-24 h-20 border-2 rounded-2xl ${method === 'Nagad' && 'border-orange-400'} rounded-xl`} />
