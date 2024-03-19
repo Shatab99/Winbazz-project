@@ -24,8 +24,16 @@ const userApi = baseApi.injectEndpoints({
                 method : 'DELETE'
             }),
             invalidatesTags : ['users']
-        })
+        }),
+        updateCred : builder.mutation({
+            query : ({email , credit})=>({
+                url : `/updateCred/${email}`,
+                method : "PATCH",
+                body : credit
+            }),
+            invalidatesTags : ['users']
+        }) ,
     })
 })
 
-export const { useGetAllUserQuery, useCreatUserMutation, useDeleteUserDbMutation , useGetUserByEmailQuery} = userApi
+export const { useGetAllUserQuery, useCreatUserMutation, useDeleteUserDbMutation , useGetUserByEmailQuery , useUpdateCredMutation} = userApi

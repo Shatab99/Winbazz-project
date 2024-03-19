@@ -3,13 +3,33 @@ import bkash from "../../assets/Icons/BKash-Icon-Logo.wine.svg"
 import nagad from "../../assets/Icons/Nagad-Logo.wine.png"
 import rocket from "../../assets/Icons/rocket-logo.png"
 import upay from "../../assets/Icons/upay-icon.png"
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+import toast from "react-hot-toast";
+import { useSubmitDepositMutation } from "../../Redux/features/EndPoints/depositApi";
+
 
 
 const DepositConfirm = () => {
-    const { amount, method } = useParams()
+    const {user}= useContext(AuthContext)
+    const { amount, method } = useParams(null)
+    const [phone, setPhone]= useState(null)
+    const [transactionId, setTransactionId]= useState()
     const navigate = useNavigate()
+    const [submitDeposit,{data, error}]=useSubmitDepositMutation()
 
-    console.log(amount, method)
+    console.log(data)
+    console.log(error)
+
+    const handleSubmit = ()=>{
+        const name = user?.name
+        const email = user?.email
+        submitDeposit({
+            name , email , amount , method ,phone ,transactionId
+        })
+        navigate('/')
+        toast.success("Requested !! Wait For Moment To Confirm ")
+    }
 
     return (
         <div className="">
@@ -26,14 +46,14 @@ const DepositConfirm = () => {
                     <div>{method}  : <span className="bg-yellow-200 py-2 px-2 rounded-lg">{method === "Rocket" ? '017193663774' : '01719366377'}</span></div>
                     <div className="flex items-center gap-2">
                         <p>Send-Money From : </p>
-                        <input type="number" placeholder="Phone Number" className="input input-bordered input-sm  max-w-xs" />
+                        <input onChange={(e)=>setPhone(e.target.value)} type="number" placeholder="Phone Number" className="input input-bordered input-sm  max-w-xs" />
                     </div>
                     <div className="flex items-center gap-2">
                         <p>Transaction-Id : </p>
-                        <input type="text" placeholder="Transaction ID here " className="input input-bordered input-sm  max-w-xs" />
+                        <input onChange={(e)=>setTransactionId(e.target.value)} type="text" placeholder="Transaction ID here " className="input input-bordered input-sm  max-w-xs" />
                     </div>
                 </div>
-                <button  className="mt-4 btn btn-sm btn-wide bg-blue-800 hover:bg-blue-950 text-white">Submit</button>
+                <button disabled={!phone || !transactionId } onClick={handleSubmit} className="mt-4 btn btn-sm btn-wide bg-blue-800 hover:bg-blue-950 text-white">Submit</button>
                 <button onClick={()=>navigate('/')} className="btn btn-sm btn-wide bg-red-800 hover:bg-red-950 text-white">Cancel</button>
             </div>
         </div>

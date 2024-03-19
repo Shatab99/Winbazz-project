@@ -17,7 +17,7 @@ const SideNav = () => {
                         <li><h1 className="text-3xl font-semibold">Admin Panel</h1></li>
                         <li className="mt-7"><Link to={'/profile'}>Admin Home</Link></li>
                         <li className=""><Link to={'/profile/users'}>Users</Link></li>
-                        <li className=""><Link to={''}>Deposite Requets</Link></li>
+                        <li className=""><Link to={'/profile/depositReq'}>Deposite Requets</Link></li>
                         <li className=""><Link to={''}>Withdraw Requets</Link></li>
 
                     </ul>

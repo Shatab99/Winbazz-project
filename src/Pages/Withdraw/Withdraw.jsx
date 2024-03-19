@@ -6,7 +6,7 @@ import upay from '../../assets/Icons/upay-icon.png'
 import rocket from '../../assets/Icons/rocket-logo.png'
 import WithdrawModal from "./WithdrawModal";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { useGetAllUserQuery, useGetUserByEmailQuery } from "../../Redux/features/EndPoints/userApi";
+import { useGetUserByEmailQuery } from "../../Redux/features/EndPoints/userApi";
 
 
 const Withdraw = () => {
@@ -17,7 +17,7 @@ const Withdraw = () => {
     const [isOpen, setIsOpen] = useState(false)
     const { user } = useContext(AuthContext)
     const email = user?.email;
-    const {data: currentUser, isLoading} = useGetUserByEmailQuery(email)
+    const {data: currentUser, isLoading, refetch} = useGetUserByEmailQuery(email)
 
 
     const balance = currentUser?.credit;
