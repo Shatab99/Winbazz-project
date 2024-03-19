@@ -17,6 +17,8 @@ import Profile from './Pages/Profile/Profile';
 import { Provider } from 'react-redux';
 import { store } from './Redux/store';
 import Users from './Pages/Profile/Users';
+import DepositConfirm from './Pages/Deposite/DepositConfirm';
+import AdminRoute from './Providers/AdminRoute';
 
 const router = createBrowserRouter([
   {
@@ -45,11 +47,15 @@ const router = createBrowserRouter([
         children : [
           {
             path : 'users',
-            element : <PrivateRoute><Users/></PrivateRoute>
+            element : <AdminRoute><PrivateRoute><Users/></PrivateRoute></AdminRoute>
           }
         ]
       },
     ]
+  },
+  {
+    path : "/depositConfirm/:amount/:method",
+    element : <PrivateRoute><DepositConfirm/></PrivateRoute>
   },
 ]);
 

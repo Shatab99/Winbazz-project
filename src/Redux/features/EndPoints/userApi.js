@@ -7,6 +7,9 @@ const userApi = baseApi.injectEndpoints({
             query: () => '/users',
             providesTags: ['users']
         }),
+        getUserByEmail : builder.query({
+           query : (email) =>`/users/${email}`,
+        }),
         creatUser: builder.mutation({
             query : (data) =>({
                 url : '/user',
@@ -14,8 +17,15 @@ const userApi = baseApi.injectEndpoints({
                 body : data
             }),
             invalidatesTags : ['users']
+        }),
+        deleteUserDb : builder.mutation({
+            query : (id) =>({
+                url : `/deleteUser/${id}`,
+                method : 'DELETE'
+            }),
+            invalidatesTags : ['users']
         })
     })
 })
 
-export const { useGetAllUserQuery, useCreatUserMutation } = userApi
+export const { useGetAllUserQuery, useCreatUserMutation, useDeleteUserDbMutation , useGetUserByEmailQuery} = userApi

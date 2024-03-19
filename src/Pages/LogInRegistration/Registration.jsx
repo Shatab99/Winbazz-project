@@ -8,6 +8,7 @@ import { sendEmailVerification, updateProfile } from "firebase/auth";
 import { VscLoading } from "react-icons/vsc";
 import toast from "react-hot-toast";
 import { useCreatUserMutation } from "../../Redux/features/EndPoints/userApi";
+import { MdBarcodeReader } from "react-icons/md";
 
 
 const Registration = ({ setIsOpen, setShowReg }) => {
@@ -15,10 +16,12 @@ const Registration = ({ setIsOpen, setShowReg }) => {
     const { register, loading, setLoading } = useContext(AuthContext)
     const [showPass, setShowPass] = useState(false)
     const [pass, setPass] = useState(0)
-    const [createUser , {data, error}] = useCreatUserMutation()
+    const [check, setCheck]= useState(false)
+    const [createUser, { data, error }] = useCreatUserMutation()
 
     console.log(data)
     console.log(error)
+ 
 
     const handleRegister = e => {
         e.preventDefault();
@@ -26,11 +29,12 @@ const Registration = ({ setIsOpen, setShowReg }) => {
         const form = e.target;
         const name = form.name.value
         const email = form.email.value
+        const refer = form.refer.value
         const password = form.password.value
         register(email, password)
             .then(res => {
                 console.log(res)
-                createUser({name, email})
+                createUser({ name, email,refer })
                 updateProfile(res.user, {
                     displayName: name
                 })
@@ -42,9 +46,9 @@ const Registration = ({ setIsOpen, setShowReg }) => {
                     })
 
                 sendEmailVerification(res.user)
-                .then(()=>{
-                    toast.success("Verification Link Sent To Your Mail !!")
-                })
+                    .then(() => {
+                        toast.success("Verification Link Sent To Your Mail !!")
+                    })
                 toast.success("Successfully Registered !!")
                 setLoading(false)
                 setIsOpen(false)
@@ -66,7 +70,7 @@ const Registration = ({ setIsOpen, setShowReg }) => {
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
                     <MdEmail />
-                    <input type="email" name="email" className="grow " placeholder="Email" required/>
+                    <input type="email" name="email" className="grow " placeholder="Email" required />
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
                     <FaUnlockKeyhole />
@@ -78,14 +82,24 @@ const Registration = ({ setIsOpen, setShowReg }) => {
                                     :
                                     <FaEye onClick={() => setShowPass(true)} className="absolute right-0 top-0 text-2xl cursor-pointer" />
                         }
-                        <input name="password" onChange={(e) => setPass(e.target.value.length)} type={showPass ? 'text' : 'password'} className="grow" placeholder="Password" required/>
+                        <input name="password" onChange={(e) => setPass(e.target.value.length)} type={showPass ? 'text' : 'password'} className="grow" placeholder="Password" required />
                     </div>
                 </label>
+                <label className="input input-bordered flex items-center gap-2">
+                    <MdBarcodeReader />
+                    <input type="number" name="refer" className="grow " placeholder="Refer Code (Optional)" />
+                </label>
+                <div className="form-control">
+                    <label className="cursor-pointer label gap-2">
+                        <input onClick={()=> setCheck(!check)} type="checkbox"  className="checkbox checkbox-success" />
+                        <span className="label-text">I am of legal age and I agree with terms and condition</span>
+                    </label>
+                </div>
                 {
                     loading ? <button className="btn w-full">
                         <VscLoading className="text-2xl font-bold animate-spin" />
                     </button> :
-                        <button className="btn w-full bg-orange-600 hover:bg-orange-800 text-white">
+                        <button disabled={!check} className="btn w-full bg-orange-600 hover:bg-orange-800 text-white">
                             Register
                         </button>
                 }

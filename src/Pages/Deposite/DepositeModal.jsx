@@ -3,9 +3,12 @@ import bikash from '../../assets/Icons/BKash-Icon-Logo.wine.svg'
 import nagad from '../../assets/Icons/Nagad-Logo.wine.png'
 import upay from '../../assets/Icons/upay-icon.png'
 import rocket from '../../assets/Icons/rocket-logo.png'
+import { Link } from "react-router-dom";
 
 
 const DepositeModal = ({ isOpen, setIsOpen, method, amount }) => {
+
+
     return (
         <>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen} >
@@ -20,7 +23,9 @@ const DepositeModal = ({ isOpen, setIsOpen, method, amount }) => {
                     </div>
                     <div className="flex items-center gap-3">
                         <button onClick={()=>setIsOpen(false)} className="btn btn-sm bg-red-700 text-white hover:bg-red-800">Cancel</button>
-                        <button onClick={()=>setIsOpen(false)} className="btn btn-sm bg-blue-600 text-white hover:bg-blue-800">Deposit</button>
+                        <Link to={`/depositConfirm/${amount}/${method}`} onClick={()=>{
+                            setIsOpen(false);
+                        }} className="btn btn-sm bg-blue-600 text-white hover:bg-blue-800">Deposit</Link>
                     </div>
                 </div>
             </Modal>

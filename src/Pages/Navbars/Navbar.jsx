@@ -4,17 +4,26 @@ import UserLogModal from '../LogInRegistration/UserLogModal';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { GoPlusCircle } from "react-icons/go";
 import { FaBell } from "react-icons/fa";
+import { useGetUserByEmailQuery } from '../../Redux/features/EndPoints/userApi';
+
+
+
 
 const Navbar = () => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [showReg, setShowReg] = useState(false)
-    const { user,logOut } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+    const email = user?.email;
+    const { data: currentUser, isLoading, refetch } = useGetUserByEmailQuery(email)
 
-    const handleLogOut =()=>{
-        logOut().then(res=> console.log(res)).catch(err=> console.log(err.message))
-    }  
-    
+    const credit = currentUser?.credit
+
+
+    const handleLogOut = () => {
+        logOut().then(res => console.log(res)).catch(err => console.log(err.message))
+    }
+
     const userName = user?.displayName?.split(' ')[0]
 
     const nav = <>
@@ -22,7 +31,7 @@ const Navbar = () => {
             user ? <>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="">
-                        <p className='font-semibold flex items-center gap-1 '><span className='text-sm'>Hey, {userName}</span> <FaBell className='text-2xl'/></p>
+                        <p className='font-semibold flex items-center gap-1 '><span className='text-sm'>Hey, {userName}</span> <FaBell className='text-2xl' /></p>
                     </div>
                     <ul tabIndex={0} className="menu z-40 menu-sm dropdown-content mt-3  p-2 shadow bg-base-100 rounded-box w-52">
                         <li><a onClick={handleLogOut}>Logout</a></li>
@@ -50,10 +59,16 @@ const Navbar = () => {
                 <div className='navbar-center'>
                     {
                         user && <>
-                            <div className='border-2 border-orange-600 px-3 rounded-3xl flex items-center '>
-                                <GoPlusCircle />
-                                <p className='font-semibold'>৳ 0.00 BDT</p>
-                            </div>
+                            {
+                                isLoading ? <div className='border-2 border-orange-600 px-3 rounded-3xl flex items-center  animate-pulse '>
+                                    <GoPlusCircle />
+                                    <p className='font-semibold'>৳ {credit === 0 ? '0.00' : credit} BDT</p>
+                                </div> :
+                                    <div onClick={() => refetch()} className='border-2 border-orange-600 px-3 rounded-3xl flex items-center '>
+                                        <GoPlusCircle />
+                                        <p className='font-semibold'>৳ {credit === 0 ? '0.00' : credit} BDT</p>
+                                    </div>
+                            }
                         </>
                     }
                 </div>
