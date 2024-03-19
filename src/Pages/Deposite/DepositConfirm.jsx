@@ -28,7 +28,7 @@ const DepositConfirm = () => {
             name , email , amount , method ,phone ,transactionId
         })
         navigate('/')
-        toast.success("Requested !! Wait For Moment To Confirm ")
+        toast.success("Requested !! Wait For Moment To Confirm ",{duration : 6000})
     }
 
     return (
