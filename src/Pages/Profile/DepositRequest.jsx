@@ -1,5 +1,5 @@
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useGetAllDepositsQuery } from "../../Redux/features/EndPoints/depositApi";
+import { useDeleteDepositMutation, useGetAllDepositsQuery } from "../../Redux/features/EndPoints/depositApi";
 import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import DepositReqModal from "./DepositReqModal";
@@ -9,6 +9,7 @@ import { useState } from "react";
 const DepositRequest = () => {
 
     const { data: deposits, isLoading } = useGetAllDepositsQuery()
+    const [deleteDeposit,] = useDeleteDepositMutation()
     const [deposit, setDeposit]= useState({})
     const [isOpen, setIsOpen]= useState(false)
 
@@ -16,7 +17,7 @@ const DepositRequest = () => {
 
     return (
         <div>
-            <h1 className="text-center font-semibold">Deposit Requests</h1>
+            <h1 className="text-center font-semibold text-xl mt-2">Deposit Requests</h1>
             <InfiniteScroll dataLength={10} next={deposits} height={500}>
                 <div className="grid grid-cols-1 gap-3 mt-3 px-2">
                     {
@@ -29,7 +30,7 @@ const DepositRequest = () => {
                                     </div>
                                     <div>
                                         <div className="flex items-center gap-3">
-                                            <button className="btn btn-sm btn-circle bg-red-700 text-white text-lg"><ImCross /></button>
+                                            <button onClick={()=>deleteDeposit(deposit._id)} className="btn btn-sm btn-circle bg-red-700 text-white text-lg"><ImCross /></button>
                                             <button onClick={()=>{
                                                 setDeposit(deposit);
                                                 setIsOpen(true)
