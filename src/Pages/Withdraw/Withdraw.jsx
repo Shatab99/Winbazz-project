@@ -18,10 +18,6 @@ const Withdraw = () => {
     const { user } = useContext(AuthContext)
     const email = user?.email;
     const {data: currentUser, isLoading} = useGetUserByEmailQuery(email)
-    
-    if (isLoading) {
-        return <p className="flex flex-col items-center justify-center min-h-screen"><span className="loading loading-spinner loading-lg"></span></p>
-    }
 
 
     const balance = currentUser?.credit;
