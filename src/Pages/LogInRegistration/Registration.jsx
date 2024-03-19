@@ -16,12 +16,12 @@ const Registration = ({ setIsOpen, setShowReg }) => {
     const { register, loading, setLoading } = useContext(AuthContext)
     const [showPass, setShowPass] = useState(false)
     const [pass, setPass] = useState(0)
-    const [check, setCheck]= useState(false)
+    const [check, setCheck] = useState(false)
     const [createUser, { data, error }] = useCreatUserMutation()
 
     console.log(data)
     console.log(error)
- 
+
 
     const handleRegister = e => {
         e.preventDefault();
@@ -29,12 +29,12 @@ const Registration = ({ setIsOpen, setShowReg }) => {
         const form = e.target;
         const name = form.name.value
         const email = form.email.value
-        const refer = form.refer.value
+        const refered = form.refer.value
         const password = form.password.value
         register(email, password)
             .then(res => {
                 console.log(res)
-                createUser({ name, email,refer })
+                createUser({ name, email, refered })
                 updateProfile(res.user, {
                     displayName: name
                 })
@@ -91,7 +91,7 @@ const Registration = ({ setIsOpen, setShowReg }) => {
                 </label>
                 <div className="form-control">
                     <label className="cursor-pointer label gap-2">
-                        <input onClick={()=> setCheck(!check)} type="checkbox"  className="checkbox checkbox-success" />
+                        <input onClick={() => setCheck(!check)} type="checkbox" className="checkbox checkbox-success" />
                         <span className="label-text">I am of legal age and I agree with terms and condition</span>
                     </label>
                 </div>
