@@ -20,6 +20,9 @@ import Users from './Pages/Profile/Users';
 import DepositConfirm from './Pages/Deposite/DepositConfirm';
 import AdminRoute from './Providers/AdminRoute';
 import DepositRequest from './Pages/Profile/DepositRequest';
+import History from './Pages/Profile/UserProfile/History';
+import Pending from './Pages/Profile/UserProfile/Pending';
+import UserHome from './Pages/Profile/UserProfile/UserHome';
 
 const router = createBrowserRouter([
   {
@@ -53,7 +56,19 @@ const router = createBrowserRouter([
           {
             path:'depositReq',
             element : <AdminRoute><PrivateRoute><DepositRequest/></PrivateRoute></AdminRoute>
-          }
+          },
+          {
+            path : 'history',
+            element : <PrivateRoute><History/></PrivateRoute>
+          },
+          {
+            path : 'pending',
+            element : <PrivateRoute><Pending/></PrivateRoute>
+          },
+          {
+            path : 'home',
+            element : <PrivateRoute><UserHome/></PrivateRoute>
+          },
         ]
       },
     ]

@@ -34,7 +34,7 @@ const BottomNav = () => {
                                 <BiMoneyWithdraw className="text-2xl" />
                                 <span className="tab tab-explore block text-xs text-white">Withdraw</span>
                             </Link>
-                            <Link to={'/profile'} className="w-full focus:text-orange-500 hover:text-orange-500 flex items-center flex-col text-center pt-2 pb-1">
+                            <Link to={'/profile/home'} className="w-full focus:text-orange-500 hover:text-orange-500 flex items-center flex-col text-center pt-2 pb-1">
                                 <FaUser className="text-2xl" />
                                 <span className="tab tab-explore block text-xs text-white">Profile</span>
                             </Link>

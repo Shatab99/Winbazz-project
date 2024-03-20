@@ -22,7 +22,7 @@ const DepositConfirm = () => {
     console.log(error)
 
     const handleSubmit = ()=>{
-        const name = user?.name
+        const name = user?.displayName
         const email = user?.email
         submitDeposit({
             name , email , amount , method ,phone ,transactionId

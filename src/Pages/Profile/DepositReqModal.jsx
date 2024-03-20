@@ -3,7 +3,7 @@ import bikash from '../../assets/Icons/BKash-Icon-Logo.wine.svg'
 import nagad from '../../assets/Icons/Nagad-Logo.wine.png'
 import upay from '../../assets/Icons/upay-icon.png'
 import rocket from '../../assets/Icons/rocket-logo.png'
-import { useDeleteDepositMutation } from "../../Redux/features/EndPoints/depositApi";
+import { useDeleteDepositMutation, usePostHistoryMutation } from "../../Redux/features/EndPoints/depositApi";
 import { useUpdateCredMutation } from "../../Redux/features/EndPoints/userApi";
 import toast from "react-hot-toast";
 
@@ -13,9 +13,11 @@ const DepositReqModal = ({ isOpen, setIsOpen, deposit }) => {
     const { method, amount, transactionId, phone, _id, email } = deposit
     const [deleteDeposit,] = useDeleteDepositMutation()
     const [updateCred] = useUpdateCredMutation()
+    const [postHistory,] = usePostHistoryMutation()
 
     const hadleUpdate = () => {
-        updateCred({ email, credit: {amount} })
+        updateCred({ email, credit: { amount } })
+        postHistory(deposit)
         deleteDeposit(_id)
         toast.success("Successfully Deposited to User !!")
     }
