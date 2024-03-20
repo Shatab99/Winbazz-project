@@ -11,13 +11,14 @@ const WithdrawReqModal = ({ isOpen, setIsOpen, withdraw, deleteDeposit }) => {
 
     const { method, amount, phone, _id, email } = withdraw
     console.log(email)
-    const {data  } = useGetUserByEmailQuery(email)
+    const {data , refetch } = useGetUserByEmailQuery(email)
     const currentCred = data?.credit
     console.log(currentCred)
     const [withdrawCred,] = useWithdrawCredMutation()
 
     const handleUpdate = () => {
         withdrawCred({ email, credit: { amount } })
+        refetch()
         deleteDeposit(_id)
         toast.success("Successfully Withdrawed to the User !!")
     }

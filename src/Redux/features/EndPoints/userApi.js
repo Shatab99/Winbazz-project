@@ -39,7 +39,7 @@ const userApi = baseApi.injectEndpoints({
                 method : "PATCH",
                 body : credit
             }),
-            invalidatesTags:['users']
+            invalidatesTags:['users','deposits']
         })
     })
 })

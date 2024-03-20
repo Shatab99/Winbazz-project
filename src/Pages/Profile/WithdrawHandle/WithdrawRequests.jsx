@@ -19,7 +19,7 @@ const WithdrawRequests = () => {
 
     return (
         <div className="mb-12">
-            <h1 className="text-xl font-semibold text-center">Withdraw Requests</h1>
+            <h1 className="text-xl font-semibold text-center mt-3">Withdraw Requests</h1>
             <InfiniteScroll dataLength={10} next={withdraws} height={500}>
                 <div className="grid grid-cols-1 gap-3 mt-3 px-2 ">
                     {
