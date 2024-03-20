@@ -36,7 +36,7 @@ export default function Modal({ setIsOpen, isOpen, children, setShowReg }) {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="max-w-4xl transform overflow-hidden rounded-2xl bg-white p-2 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Panel className="max-w-4xl transform overflow-hidden rounded-2xl bg-white p-4 text-left align-middle shadow-xl transition-all">
                                     {children}
                                 </Dialog.Panel>
                             </Transition.Child>
