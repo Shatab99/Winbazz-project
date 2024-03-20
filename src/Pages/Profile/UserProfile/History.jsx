@@ -1,16 +1,28 @@
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useSeeHistoryQuery } from "../../../Redux/features/EndPoints/depositApi";
+import {  useDeleteHistoryMutation, useSeeHistoryQuery } from "../../../Redux/features/EndPoints/depositApi";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../../../Components/Loading";
+import { ImCross } from "react-icons/im";
+import toast from "react-hot-toast";
 
 const History = () => {
 
     const { user } = useContext(AuthContext)
     const email = user?.email
     const { data: history, isLoading } = useSeeHistoryQuery(email)
+    const [deleteHistory, {data, error}]= useDeleteHistoryMutation()
+
+    console.log(data)
+    console.log(error)
+
+
+    const handleDelete = (id)=>{
+        deleteHistory(id)
+        toast.success("History Removed !! ")
+    }
 
     return (
         <div>
@@ -32,11 +44,15 @@ const History = () => {
                                             <p className="text-sm font-semibold">{deposit.transactionId}</p>
                                             <p className="text-sm">{deposit.phone}</p>
                                         </div>
-                                        <div>
-                                            <p>Amount : {deposit.amount}</p>
+                                        <div className="flex flex-col items-center font-semibold">
+                                            <p>Amount </p>
+                                            <p> {deposit.amount}</p>
                                         </div>
-                                        <div className="border-2 text-orange-600 border-orange-600  px-3 py-1 rounded-full">
-                                            Completed
+                                        <div className="border-2 text-orange-600 border-orange-600  px-3 py-1 rounded-full text-xs">
+                                            {deposit.category}
+                                        </div>
+                                        <div>
+                                            <button onClick={()=>handleDelete(deposit._id)} className="btn btm-sm btn-circle bg-red-700 text-white hover:bg-red-800"><ImCross/></button>
                                         </div>
                                     </div>
                                 </>)

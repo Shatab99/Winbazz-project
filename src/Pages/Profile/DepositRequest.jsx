@@ -4,6 +4,7 @@ import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import DepositReqModal from "./DepositReqModal";
 import { useState } from "react";
+import Loading from "../../Components/Loading";
 
 
 const DepositRequest = () => {
@@ -21,7 +22,7 @@ const DepositRequest = () => {
             <InfiniteScroll dataLength={10} next={deposits} height={500}>
                 <div className="grid grid-cols-1 gap-3 mt-3 px-2">
                     {
-                        isLoading ? <p className="flex flex-col items-center justify-center min-h-screen "><span className="loading loading-spinner loading-lg"></span></p> :
+                        isLoading ? <Loading/> :
                             deposits.map((deposit) => <>
                                 <div className="border-2 rounded-lg p-4 flex items-center justify-between ">
                                     <div className="flex flex-col">

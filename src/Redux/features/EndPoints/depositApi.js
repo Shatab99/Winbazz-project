@@ -35,9 +35,17 @@ const depositApi = baseApi.injectEndpoints({
             invalidatesTags : ['deposits']
         }),
         seeHistory : builder.query({
-            query : (email) =>`/history/${email}`
+            query : (email) =>`/history/${email}`,
+            providesTags: ['deposits']
+        }),
+        deleteHistory : builder.mutation({
+            query : (id) =>({
+                url : `/deleteHistory/${id}`,
+                method : "DELETE"
+            }),
+            invalidatesTags : ['deposits']
         })
     })
 })
 
-export const { useGetAllDepositsQuery, useSubmitDepositMutation, useDeleteDepositMutation, usePendigHistoryQuery, usePostHistoryMutation,useSeeHistoryQuery } = depositApi
+export const { useGetAllDepositsQuery, useSubmitDepositMutation, useDeleteDepositMutation, usePendigHistoryQuery, usePostHistoryMutation,useSeeHistoryQuery, useDeleteHistoryMutation } = depositApi
