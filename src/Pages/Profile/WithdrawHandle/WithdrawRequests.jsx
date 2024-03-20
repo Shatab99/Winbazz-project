@@ -1,30 +1,30 @@
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useDeleteDepositMutation, useGetAllDepositsQuery } from "../../Redux/features/EndPoints/depositApi";
+import { useDeleteDepositMutation, useGetAllWithdrawsQuery } from "../../../Redux/features/EndPoints/depositApi";
+import Loading from "../../../Components/Loading";
+import Empty from "../../../Components/Empty";
 import { FaCheck } from "react-icons/fa";
-import { ImCross } from "react-icons/im";
-import DepositReqModal from "./DepositReqModal";
 import { useState } from "react";
-import Loading from "../../Components/Loading";
-import Empty from "../../Components/Empty";
+import { ImCross } from "react-icons/im";
+import WithdrawReqModal from "./WithdrawReqModal";
 
 
-const DepositRequest = () => {
+const WithdrawRequests = () => {
 
-    const { data: deposits, isLoading } = useGetAllDepositsQuery()
+    const { data: withdraws, isLoading } = useGetAllWithdrawsQuery()
     const [deleteDeposit,] = useDeleteDepositMutation()
-    const [deposit, setDeposit] = useState({})
+    const [withdraw, setWithdraw] = useState({})
     const [isOpen, setIsOpen] = useState(false)
-
-
+    console.log(withdraws)
+    console.log(withdraw)
 
     return (
         <div className="mb-12">
-            <h1 className="text-center font-semibold text-xl mt-2">Deposit Requests</h1>
-            <InfiniteScroll dataLength={10} next={deposits} height={500}>
+            <h1 className="text-xl font-semibold text-center">Withdraw Requests</h1>
+            <InfiniteScroll dataLength={10} next={withdraws} height={500}>
                 <div className="grid grid-cols-1 gap-3 mt-3 px-2 ">
                     {
                         isLoading ? <Loading /> :
-                            deposits.length === 0 ? <Empty/> : deposits.map((deposit) => <>
+                            withdraws?.length === 0 ? <Empty /> : withdraws?.map((deposit) => <>
                                 <div className="border-2 rounded-lg p-4 flex items-center justify-between ">
                                     <div className="flex flex-col">
                                         <p className="text-sm font-semibold">{deposit.email}</p>
@@ -34,7 +34,7 @@ const DepositRequest = () => {
                                         <div className="flex items-center gap-3">
                                             <button onClick={() => deleteDeposit(deposit._id)} className="btn btn-sm btn-circle bg-red-700 text-white text-lg"><ImCross /></button>
                                             <button onClick={() => {
-                                                setDeposit(deposit);
+                                                setWithdraw(deposit);
                                                 setIsOpen(true)
                                             }} className="btn btn-sm btn-circle bg-green-700 text-white text-lg"><FaCheck /></button>
                                         </div>
@@ -44,9 +44,9 @@ const DepositRequest = () => {
                     }
                 </div>
             </InfiniteScroll>
-            <DepositReqModal deposit={deposit} isOpen={isOpen} setIsOpen={setIsOpen} />
+            <WithdrawReqModal withdraw={withdraw} isOpen={isOpen} setIsOpen={setIsOpen} deleteDeposit={deleteDeposit} />
         </div>
     );
 };
 
-export default DepositRequest;
+export default WithdrawRequests;

@@ -3,8 +3,22 @@ import bikash from '../../assets/Icons/BKash-Icon-Logo.wine.svg'
 import nagad from '../../assets/Icons/Nagad-Logo.wine.png'
 import upay from '../../assets/Icons/upay-icon.png'
 import rocket from '../../assets/Icons/rocket-logo.png'
+import { useSubmitDepositMutation } from "../../Redux/features/EndPoints/depositApi";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
-const WithdrawModal = ({ isOpen, setIsOpen, method, amount, phone }) => {
+const WithdrawModal = ({ isOpen, setIsOpen, email, amount, method, phone, name }) => {
+
+    const [submitDeposit,] = useSubmitDepositMutation()
+    const navigate = useNavigate()
+
+    const handleSubmit = () => {
+        submitDeposit({ email, amount, method, phone, name, category: "Withdraw" })
+        navigate('/')
+        toast.success("Your Withdraw Requested ! Please wait for a moment . ", { duration: 6000 })
+    }
+
+
     return (
         <>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen} >
@@ -19,7 +33,10 @@ const WithdrawModal = ({ isOpen, setIsOpen, method, amount, phone }) => {
                         <p>Please Be sure you want to withdraw in <span className="font-semibold">{phone}</span></p>
                     </div>
                     <div className="flex items-center gap-3">
-                        <button onClick={() => setIsOpen(false)} className="btn btn-sm bg-green-700 text-white hover:bg-green-800">Yes, I am Sure</button>
+                        <button onClick={() => {
+                            setIsOpen(false)
+                            handleSubmit()
+                        }} className="btn btn-sm bg-green-700 text-white hover:bg-green-800">Yes, I am Sure</button>
                         <button onClick={() => setIsOpen(false)} className="btn btn-sm bg-red-700 text-white hover:bg-red-800">Cancel</button>
                     </div>
                 </div>

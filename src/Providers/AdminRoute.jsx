@@ -9,7 +9,6 @@ const AdminRoute = ({ children }) => {
     const email = user?.email;
     const { data: currentUser, isLoading } = useGetUserByEmailQuery(email)
     const role = currentUser?.role
-    console.log(role)
 
     if (loading && isLoading) {
         return <p className="flex flex-col items-center justify-center min-h-screen"><span className="loading loading-spinner loading-lg"></span></p>

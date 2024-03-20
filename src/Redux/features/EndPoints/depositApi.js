@@ -44,8 +44,12 @@ const depositApi = baseApi.injectEndpoints({
                 method : "DELETE"
             }),
             invalidatesTags : ['deposits']
+        }),
+        getAllWithdraws : builder.query({
+            query : ()=> '/withdraw',
+            providesTags : ['deposits']
         })
     })
 })
 
-export const { useGetAllDepositsQuery, useSubmitDepositMutation, useDeleteDepositMutation, usePendigHistoryQuery, usePostHistoryMutation,useSeeHistoryQuery, useDeleteHistoryMutation } = depositApi
+export const { useGetAllDepositsQuery, useSubmitDepositMutation, useDeleteDepositMutation, usePendigHistoryQuery, usePostHistoryMutation,useSeeHistoryQuery, useDeleteHistoryMutation, useGetAllWithdrawsQuery } = depositApi

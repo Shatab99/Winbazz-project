@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const SideNav = () => {
     return (
         <div>
-            <div className="drawer">
+            <div className="drawer z-50">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     {/* Page content here */}
@@ -18,7 +18,7 @@ const SideNav = () => {
                         <li className="mt-7"><Link to={'/profile'}>Admin Home</Link></li>
                         <li className=""><Link to={'/profile/users'}>Users</Link></li>
                         <li className=""><Link to={'/profile/depositReq'}>Deposite Requets</Link></li>
-                        <li className=""><Link to={''}>Withdraw Requets</Link></li>
+                        <li className=""><Link to={'/profile/withdrawReq'}>Withdraw Requets</Link></li>
 
                     </ul>
                 </div>

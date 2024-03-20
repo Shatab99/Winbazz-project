@@ -17,6 +17,7 @@ const Withdraw = () => {
     const [isOpen, setIsOpen] = useState(false)
     const { user } = useContext(AuthContext)
     const email = user?.email;
+    const name = user?.displayName
     const {data: currentUser, isLoading, refetch} = useGetUserByEmailQuery(email)
 
 
@@ -58,7 +59,7 @@ const Withdraw = () => {
             </div>
             <div className="flex flex-col items-start max-w-xs justify-center mx-auto gap-5">
                 <p>Select Amount <span className="text-red-600">*</span></p>
-                <input onChange={(e) => setAmount(e.target.value)} type="number" placeholder="Minimum 800 BDT - Maximum 30000 BDT " className="input input-bordered w-full max-w-xs font-bold" />
+                <input onChange={(e) => setAmount(e.target.value)} type="number" placeholder="Minimum 800 BDT - Maximum 30000 BDT " className="input input-bordered w-full max-w-xs text-sm font-bold" />
                 <p className="text-red-700">{err}</p>
                 <p>Select Payment Methods <span className="text-red-600">*</span></p>
                 <div className='flex flex-wrap items-center justify-start mt-4 gap-2'>
@@ -69,11 +70,11 @@ const Withdraw = () => {
                 </div>
                 <div className="w-full mb-3">
                     <p className="mb-4">Enter Phone Number <span className="text-red-600">*</span></p>
-                    <input onChange={(e) => setPhone(e.target.value)} type="number" placeholder="Enter your phone Number " className="input input-bordered w-full max-w-sm" />
+                    <input onChange={(e) => setPhone(e.target.value)} type="number" placeholder="Enter your phone Number " className="input input-bordered w-full max-w-sm " />
                 </div>
                 <button onClick={() => setIsOpen(true)} disabled={!amount || amount < 800 || amount > balance || !method || phone?.length !== 11 | !phone} className="btn bg-blue-700 text-white w-full ">Withdraw</button>
             </div>
-            <WithdrawModal isOpen={isOpen} setIsOpen={setIsOpen} method={method} amount={amount} phone={phone} />
+            <WithdrawModal isOpen={isOpen} setIsOpen={setIsOpen} method={method} email ={email} amount={amount} phone={phone} name={name} />
         </div>
     );
 };

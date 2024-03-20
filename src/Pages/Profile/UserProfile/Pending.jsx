@@ -5,6 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../../../Components/Loading";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import Empty from "../../../Components/Empty";
 
 
 const Pending = () => {
@@ -27,14 +28,15 @@ const Pending = () => {
                     isLoading ? <Loading /> :
                         <div className="grid grid-cols-1 gap-3 mt-3 px-2">
                             {
-                                pendings.map((deposit) => <>
+                                pendings.length === 0 ? <Empty /> : pendings.map((deposit) => <>
                                     <div className="border-2 rounded-lg p-4 flex items-center justify-between ">
                                         <div className="flex flex-col">
                                             <p className="text-sm font-semibold">{deposit.transactionId}</p>
                                             <p className="text-sm">{deposit.phone}</p>
                                         </div>
-                                        <div>
-                                            <p>Amount : {deposit.amount}</p>
+                                        <div className="flex flex-col items-center">
+                                            <p>{deposit.category} </p>
+                                            <p> {deposit.amount} BDT</p>
                                         </div>
                                         <div className="bg-orange-600 text-white px-3 py-1 rounded-full">
                                             {deposit.status}

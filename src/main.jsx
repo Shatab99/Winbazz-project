@@ -23,6 +23,7 @@ import DepositRequest from './Pages/Profile/DepositRequest';
 import History from './Pages/Profile/UserProfile/History';
 import Pending from './Pages/Profile/UserProfile/Pending';
 import UserHome from './Pages/Profile/UserProfile/UserHome';
+import WithdrawRequests from './Pages/Profile/WithdrawHandle/WithdrawRequests';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
           {
             path : 'history',
             element : <PrivateRoute><History/></PrivateRoute>
+          },
+          {
+            path : 'withdrawReq',
+            element : <AdminRoute><PrivateRoute><WithdrawRequests/></PrivateRoute></AdminRoute>
           },
           {
             path : 'pending',
