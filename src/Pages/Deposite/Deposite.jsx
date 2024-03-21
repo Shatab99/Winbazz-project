@@ -35,12 +35,12 @@ const Deposite = () => {
                     <h1 className="text-lg font-semibold">Select Amount</h1>
                     <div className='grid grid-cols-4 mt-3 gap-2 '>
                         <p onClick={()=>setAmount(200)}  className={` p-1 font-bold text-center rounded-2xl text-lg ${amount === 200 ? ' text-yellow-400' : 'bg-white text-black'}`} >200</p>
-                        <p onClick={()=>setAmount(500)}  className={`bg-white p-1 font-bold text-center rounded-2xl text-lg ${amount === 500 ? ' text-yellow-400' : 'bg-white text-black'}`} >500</p>
-                        <p onClick={()=>setAmount(1000)}  className={`bg-white p-1 font-bold text-center rounded-2xl text-lg ${amount === 1000 ? ' text-yellow-400' : 'bg-white text-black'}`} >1000</p>
-                        <p onClick={()=>setAmount(2000)}  className={`bg-white p-1 font-bold text-center rounded-2xl text-lg ${amount === 2000 ? ' text-yellow-400' : 'bg-white text-black'}`} >2000</p>
-                        <p onClick={()=>setAmount(5000)}  className={`bg-white p-1 font-bold text-center rounded-2xl text-lg ${amount === 5000 ? ' text-yellow-400' : 'bg-white text-black'}`} >5000</p>
-                        <p onClick={()=>setAmount(10000)}  className={`bg-white p-1 font-bold text-center rounded-2xl text-lg ${amount === 10000 ? ' text-yellow-400' : 'bg-white text-black'}`} >10000</p>
-                        <p onClick={()=>setAmount(30000)}  className={`bg-white p-1 font-bold text-center rounded-2xl text-lg ${amount === 30000 ? ' text-yellow-400' : 'bg-white text-black'}`} >30000</p>
+                        <p onClick={()=>setAmount(500)}  className={` p-1 font-bold text-center rounded-2xl text-lg ${amount === 500 ? ' text-yellow-400' : 'bg-white text-black'}`} >500</p>
+                        <p onClick={()=>setAmount(1000)}  className={` p-1 font-bold text-center rounded-2xl text-lg ${amount === 1000 ? ' text-yellow-400' : 'bg-white text-black'}`} >1000</p>
+                        <p onClick={()=>setAmount(2000)}  className={` p-1 font-bold text-center rounded-2xl text-lg ${amount === 2000 ? ' text-yellow-400' : 'bg-white text-black'}`} >2000</p>
+                        <p onClick={()=>setAmount(5000)}  className={` p-1 font-bold text-center rounded-2xl text-lg ${amount === 5000 ? ' text-yellow-400' : 'bg-white text-black'}`} >5000</p>
+                        <p onClick={()=>setAmount(10000)}  className={` p-1 font-bold text-center rounded-2xl text-lg ${amount === 10000 ? ' text-yellow-400' : 'bg-white text-black'}`} >10000</p>
+                        <p onClick={()=>setAmount(30000)}  className={` p-1 font-bold text-center rounded-2xl text-lg ${amount === 30000 ? ' text-yellow-400' : 'bg-white text-black'}`} >30000</p>
                     </div>
                 </div>
                 <div className='mb-4 flex flex-col gap-3'>
