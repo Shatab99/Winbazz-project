@@ -5,6 +5,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import { GoPlusCircle } from "react-icons/go";
 import { FaBell } from "react-icons/fa";
 import { useGetUserByEmailQuery } from '../../Redux/features/EndPoints/userApi';
+import { VscLoading } from "react-icons/vsc";
 
 
 
@@ -60,13 +61,12 @@ const Navbar = () => {
                     {
                         user && <>
                             {
-                                isLoading ? <div className='border-2 border-orange-600 px-3 rounded-3xl flex items-center  animate-pulse '>
-                                    <GoPlusCircle />
-                                    <p className='font-semibold'>৳ {credit === 0 ? '0.00' : credit} BDT</p>
+                                isLoading ? <div className='border-2 border-orange-600 px-6 py-1 rounded-3xl flex items-center '>
+                                    <VscLoading className='animate-spin font-bold text-black'/>
                                 </div> :
-                                    <div onClick={() => refetch()} className='border-2 border-orange-600 px-3 rounded-3xl flex items-center '>
+                                    <div onClick={() => refetch()} className='border-2 border-orange-600 px-3 rounded-3xl flex items-center gap-1 '>
                                         <GoPlusCircle />
-                                        <p className='font-semibold'>৳ {credit === 0 ? '0.00' : credit} BDT</p>
+                                        <p className='font-semibold'>  {credit === 0 ? '0.00' : credit} BDT</p>
                                     </div>
                             }
                         </>

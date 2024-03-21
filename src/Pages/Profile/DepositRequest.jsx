@@ -1,5 +1,5 @@
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useDeleteDepositMutation, useGetAllDepositsQuery } from "../../Redux/features/EndPoints/depositApi";
+import { useDeleteDepositMutation, useGetAllDepositsQuery, usePostHistoryMutation } from "../../Redux/features/EndPoints/depositApi";
 import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import DepositReqModal from "./DepositReqModal";
@@ -14,7 +14,7 @@ const DepositRequest = () => {
     const [deleteDeposit,] = useDeleteDepositMutation()
     const [deposit, setDeposit] = useState({})
     const [isOpen, setIsOpen] = useState(false)
-
+    const [postHistory,] = usePostHistoryMutation()
 
 
     return (
@@ -24,7 +24,7 @@ const DepositRequest = () => {
                 <div className="grid grid-cols-1 gap-3 mt-3 px-2 ">
                     {
                         isLoading ? <Loading /> :
-                            deposits.length === 0 ? <Empty/> : deposits.map((deposit) => <>
+                            deposits.length === 0 ? <Empty /> : deposits.map((deposit) => <>
                                 <div className="border-2 rounded-lg p-4 flex items-center justify-between ">
                                     <div className="flex flex-col">
                                         <p className="text-sm font-semibold">{deposit.email}</p>
@@ -32,7 +32,10 @@ const DepositRequest = () => {
                                     </div>
                                     <div>
                                         <div className="flex items-center gap-3">
-                                            <button onClick={() => deleteDeposit(deposit._id)} className="btn btn-sm btn-circle bg-red-700 text-white text-lg"><ImCross /></button>
+                                            <button onClick={() => {
+                                                postHistory({ ...deposit, confirm: false })
+                                                deleteDeposit(deposit._id)
+                                            }} className="btn btn-sm btn-circle bg-red-700 text-white text-lg"><ImCross /></button>
                                             <button onClick={() => {
                                                 setDeposit(deposit);
                                                 setIsOpen(true)

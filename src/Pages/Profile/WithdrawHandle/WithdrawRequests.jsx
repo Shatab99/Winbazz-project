@@ -1,5 +1,5 @@
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useDeleteDepositMutation, useGetAllWithdrawsQuery } from "../../../Redux/features/EndPoints/depositApi";
+import { useDeleteDepositMutation, useGetAllWithdrawsQuery, usePostHistoryMutation } from "../../../Redux/features/EndPoints/depositApi";
 import Loading from "../../../Components/Loading";
 import Empty from "../../../Components/Empty";
 import { FaCheck } from "react-icons/fa";
@@ -16,6 +16,8 @@ const WithdrawRequests = () => {
     const [isOpen, setIsOpen] = useState(false)
     console.log(withdraws)
     console.log(withdraw)
+    const [postHistory,] = usePostHistoryMutation()
+
 
     return (
         <div className="mb-12">
@@ -32,7 +34,10 @@ const WithdrawRequests = () => {
                                     </div>
                                     <div>
                                         <div className="flex items-center gap-3">
-                                            <button onClick={() => deleteDeposit(deposit._id)} className="btn btn-sm btn-circle bg-red-700 text-white text-lg"><ImCross /></button>
+                                            <button onClick={() => {
+                                                postHistory({...deposit , confirm : false, category : "Withdraw"})
+                                                deleteDeposit(deposit._id)
+                                            }} className="btn btn-sm btn-circle bg-red-700 text-white text-lg"><ImCross /></button>
                                             <button onClick={() => {
                                                 setWithdraw(deposit);
                                                 setIsOpen(true)

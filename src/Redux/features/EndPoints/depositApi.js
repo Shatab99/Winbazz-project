@@ -39,8 +39,8 @@ const depositApi = baseApi.injectEndpoints({
             providesTags: ['deposits']
         }),
         deleteHistory : builder.mutation({
-            query : (id) =>({
-                url : `/deleteHistory/${id}`,
+            query : (email) =>({
+                url : `/clearHistory/${email}`,
                 method : "DELETE"
             }),
             invalidatesTags : ['deposits']

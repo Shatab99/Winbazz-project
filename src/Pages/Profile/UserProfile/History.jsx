@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../../../Components/Loading";
-import { ImCross } from "react-icons/im";
+import { ImCheckmark, ImCross } from "react-icons/im";
 import toast from "react-hot-toast";
 import Empty from "../../../Components/Empty";
 
@@ -21,19 +21,21 @@ const History = () => {
     console.log(error)
 
 
-    const handleDelete = (id) => {
-        deleteHistory(id)
-        toast.success("History Removed !! ")
+    const handleDelete = () => {
+        deleteHistory(email)
+        toast.success("History Cleared !! ")
     }
 
     return (
-        <div>
+        <div className="mb-16">
             <div className="flex items-center justify-between mt-2">
                 <Link to={'/profile/home'} className="ml-2 btn btn-xs btn-circle">
                     <FaArrowCircleLeft className="text-2xl text-orange-600" />
                 </Link>
-                <h1 className="text-center font-semibold text-lg mr-2">Payment History</h1>
-                <div></div>
+                <h1 className="text-center font-semibold text-lg ">Payment History</h1>
+                <div onClick={handleDelete} className="btn btn-sm mr-2 text-white bg-red-700 hover:bg-red-900">
+                    Clear
+                </div>
             </div>
             <InfiniteScroll dataLength={10} next={history} height={500}>
                 {
@@ -44,19 +46,18 @@ const History = () => {
                                     <Empty />
                                     : history.map((deposit) => <>
                                         <div className="border-2 rounded-lg p-4 flex items-center justify-between ">
-                                            <div className="flex flex-col">
-                                                <p className="text-sm font-semibold">{deposit.transactionId}</p>
-                                                <p className="text-sm">{deposit.phone}</p>
-                                            </div>
                                             <div className="flex flex-col items-center font-semibold">
                                                 <p>Amount </p>
-                                                <p> {deposit.amount}</p>
+                                                <p className={`${deposit.category === "Deposit" ? 'text-green-700' : 'text-red-700'}`}>{deposit.category === "Deposit" ? "+" : "-"} {deposit.amount} BDT</p>
                                             </div>
-                                            <div className="border-2 text-orange-600 border-orange-600  px-3 py-1 rounded-full text-xs">
+                                            <div className={`border-2 ${deposit.category === "Deposit" ? "text-green-700 border-green-700 " : " text-orange-600 border-orange-600"
+                                                }   px-3 py-1 rounded-full text-xs`}>
                                                 {deposit.category}
                                             </div>
                                             <div>
-                                                <button onClick={() => handleDelete(deposit._id)} className="btn btm-sm btn-circle bg-red-700 text-white hover:bg-red-800"><ImCross /></button>
+                                                {
+                                                    deposit.confirm ? <button className="btn btn-sm  bg-green-700 text-white hover:bg-green-800">Approved <ImCheckmark /></button> : <button className="btn btn-sm  bg-red-700 text-white hover:bg-red-800">Canceled <ImCross /></button>
+                                                }
                                             </div>
                                         </div>
                                     </>)
