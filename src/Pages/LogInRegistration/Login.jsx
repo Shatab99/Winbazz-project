@@ -52,11 +52,11 @@ const Login = ({ setShowReg, setIsOpen }) => {
         <>
             <h1 className="text-2xl text-center font-semibold mb-6">Sign In</h1>
             <form onSubmit={handleLogIn} className="flex flex-col items-center gap-4 ">
-                <label className="input input-bordered flex items-center gap-2 relative">
+                <label className="input input-bordered flex items-center gap-2 relative border-orange-600 border-2">
                     <MdEmail />
                     <input onChange={(e) => setEmail(e.target.value)} type="email" name="email" className="grow " placeholder="Email" />
                 </label>
-                <label className="input input-bordered flex items-center gap-2">
+                <label className="input input-bordered flex items-center gap-2 border-orange-600 border-2">
                     <FaUnlockKeyhole />
                     <div className="relative ">
                         {

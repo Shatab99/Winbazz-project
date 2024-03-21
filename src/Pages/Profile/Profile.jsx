@@ -15,7 +15,7 @@ const Profile = () => {
 
     return (
         <>
-            <div className="text-lg w-full text-center bg-black p-2 font-semibold text-orange-300 relative">
+            <div className="text-lg w-full text-center bg-white p-2 font-bold text-black relative">
                 <p className="">{isAdmin === "admin" ? "Admin Panel" : "Your Profile"}</p>
                 {isAdmin === 'admin' && <SideNav />}
             </div>

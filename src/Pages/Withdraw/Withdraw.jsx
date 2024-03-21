@@ -44,14 +44,14 @@ const Withdraw = () => {
 
     return (
         <div className="mx-auto mb-24">
-            <h1 className="text-lg w-full text-center bg-black p-2 font-semibold text-orange-300">Make Your Withdraw Here</h1>
-            <div onClick={()=> refetch()} className="max-w-xs mx-auto bg-[#333333] px-6 py-4 my-6 rounded-xl flex flex-col items-center gap-1">
+            <h1 className="text-lg w-full text-center bg-white p-2 font-bold text-black">Make Your Withdraw Here</h1>
+            <div onClick={()=> refetch()} className="max-w-xs mx-auto bg-white px-6 py-4 my-6 rounded-xl flex flex-col items-center gap-1">
                 {
-                    isLoading ? <p className="flex flex-col items-center justify-center text-white "><span className="loading loading-spinner loading-lg"></span></p> : <>
-                        <p className="text-white text-xl flex items-center gap-2">
+                    isLoading ? <p className="flex flex-col items-center justify-center text-black "><span className="loading loading-spinner loading-lg"></span></p> : <>
+                        <p className="text-black font-bold text-xl flex items-center gap-2">
                             <span>Balance</span> <IoReload />
                         </p>
-                        <p className="text-orange-300 font-bold">
+                        <p className="text-orange-600 font-bold">
                             ৳ {balance} BDT
                         </p>
                     </>

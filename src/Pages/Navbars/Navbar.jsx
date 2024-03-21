@@ -41,7 +41,7 @@ const Navbar = () => {
             </>
                 :
                 <>
-                    <button onClick={() => setIsOpen(true)} className='font-bold btn btn-outline btn-sm text-[#F27125]' >Log In</button>
+                    <button onClick={() => setIsOpen(true)} className='font-bold btn btn-outline btn-sm text-white ' >Log In</button>
                     <button onClick={() => {
                         setIsOpen(true);
                         setShowReg(true);

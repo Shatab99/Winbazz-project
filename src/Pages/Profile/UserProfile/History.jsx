@@ -56,7 +56,7 @@ const History = () => {
                                             </div>
                                             <div>
                                                 {
-                                                    deposit.confirm ? <button className="btn btn-sm  bg-green-700 text-white hover:bg-green-800">Approved <ImCheckmark /></button> : <button className="btn btn-sm  bg-red-700 text-white hover:bg-red-800">Canceled <ImCross /></button>
+                                                    deposit.confirm ? <button className="btn btn-sm  bg-green-700 text-white hover:bg-green-800">Approved <ImCheckmark /></button> : <button className="btn btn-sm  bg-red-700 text-white hover:bg-red-800">Rejected <ImCross /></button>
                                                 }
                                             </div>
                                         </div>
