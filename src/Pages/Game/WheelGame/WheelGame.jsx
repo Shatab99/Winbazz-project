@@ -60,7 +60,7 @@ const WheelGame = () => {
                 <div className='border-2 font-bold px-4 py-1 rounded-full text-sm '>
                     {isLoading ? <VscLoading className='animate-spin' /> : `${cred} BDT`}
                 </div>
-                <h1 className="text-xl text-center font-bold">Spin the Wheel ! (2x)</h1>
+                <h1 className="text-xl text-center font-bold">Spin the Wheel !</h1>
                 <Link to={'/'} className='btn btn-sm bg-red-700 rounded-2xl'>
                     Exit
                 </Link>
@@ -69,7 +69,7 @@ const WheelGame = () => {
                 <div className=''>
                     <div className={`relative mx-auto w-72 h-72 border-4 border-gray-300 rounded-full transition-transform duration-300 ${isSpinning ? 'animate-spin' : ''}`}>
                         <img src={wheelSpin} alt="" className='bg-white rounded-full' />
-                        <p className={`absolute top-[40%] ${result < 10 ? 'left-[45%]' : 'left-[41%]'} text-5xl font-bold`}>{isSpinning ? '' : result}</p>
+                        <p className={`absolute animate-bounce top-[40%] ${result < 10 ? 'left-[45%]' : 'left-[41%]'} text-5xl font-bold`}>{isSpinning ? '' : result}</p>
                     </div>
                 </div>
                 {/*Bet Part */}
@@ -95,18 +95,18 @@ const WheelGame = () => {
                 <div className='px-4'>
                     <h1 className='text-lg font-bold text-center animate-bounce mb-2'>Select Your Lucky Number</h1>
                     <div className='grid grid-cols-4 gap-2'>
-                        <div onClick={() => setNum(0)} className={`btn btn-sm  font-bold ${num === 0 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>0</div>
-                        <div onClick={() => setNum(1)} className={`btn btn-sm  font-bold ${num === 1 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>1</div>
-                        <div onClick={() => setNum(2)} className={`btn btn-sm  font-bold ${num === 2 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>2</div>
-                        <div onClick={() => setNum(3)} className={`btn btn-sm  font-bold ${num === 3 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>3</div>
-                        <div onClick={() => setNum(4)} className={`btn btn-sm  font-bold ${num === 4 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>4</div>
-                        <div onClick={() => setNum(5)} className={`btn btn-sm  font-bold ${num === 5 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>5</div>
-                        <div onClick={() => setNum(6)} className={`btn btn-sm  font-bold ${num === 6 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>6</div>
-                        <div onClick={() => setNum(7)} className={`btn btn-sm  font-bold ${num === 7 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>7</div>
-                        <div onClick={() => setNum(8)} className={`btn btn-sm  font-bold ${num === 8 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>8</div>
-                        <div onClick={() => setNum(9)} className={`btn btn-sm  font-bold ${num === 9 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>9</div>
-                        <div onClick={() => setNum(10)} className={`btn btn-sm  font-bold ${num === 10 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>10</div>
-                        <div onClick={() => setNum(11)} className={`btn btn-sm  font-bold ${num === 11 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}>11</div>
+                        <div onClick={() => setNum(0)} className={`btn btn-sm  font-bold ${num === 0 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>0</span> (2x)</div>
+                        <div onClick={() => setNum(1)} className={`btn btn-sm  font-bold ${num === 1 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>1</span> (2x)</div>
+                        <div onClick={() => setNum(2)} className={`btn btn-sm  font-bold ${num === 2 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'} text-xs`}> <span className='text-lg'>2</span> (2x)</div>
+                        <div onClick={() => setNum(3)} className={`btn btn-sm  font-bold ${num === 3 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>3</span> (3x)</div>
+                        <div onClick={() => setNum(4)} className={`btn btn-sm  font-bold ${num === 4 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>4</span> (4x)</div>
+                        <div onClick={() => setNum(5)} className={`btn btn-sm  font-bold ${num === 5 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>5</span> (5x)</div>
+                        <div onClick={() => setNum(6)} className={`btn btn-sm  font-bold ${num === 6 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>6</span> (6x)</div>
+                        <div onClick={() => setNum(7)} className={`btn btn-sm  font-bold ${num === 7 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>7</span> (7x)</div>
+                        <div onClick={() => setNum(8)} className={`btn btn-sm  font-bold ${num === 8 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>8</span> (8x)</div>
+                        <div onClick={() => setNum(9)} className={`btn btn-sm  font-bold ${num === 9 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>9</span> (9x)</div>
+                        <div onClick={() => setNum(10)} className={`btn col-span-2 btn-sm  font-bold ${num === 10 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}  `}><span className='text-lg'>10</span> <p>(10x)</p></div>
+                        <div onClick={() => setNum(11)} className={`btn col-span-4 btn-sm  font-bold ${num === 11 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>11</span> <p>(11x)</p></div>
 
                     </div>
                 </div>
@@ -114,7 +114,7 @@ const WheelGame = () => {
                 <div className='flex justify-center'>
                     <button onClick={() => {
                         startSpin();
-                    }} disabled={isSpinning || num === null || !bet || bet > cred} className="btn btn-wide bg-blue-700 mt-5">
+                    }} disabled={isSpinning || num === null || !bet || bet > cred} className="btn btn-wide bg-green-600 text-lg mt-5">
                         Spin
                     </button>
                 </div>
