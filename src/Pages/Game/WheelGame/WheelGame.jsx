@@ -67,7 +67,7 @@ const WheelGame = () => {
             </div>
             <div className='flex flex-col gap-3'>
                 <div className=''>
-                    <div className={`relative mx-auto w-56 h-56 border-4 border-gray-300 rounded-full transition-transform duration-300 ${isSpinning ? 'animate-spin' : ''}`}>
+                    <div className={`relative mx-auto w-44 h-44 border-4 border-gray-300 rounded-full transition-transform duration-300 ${isSpinning ? 'animate-spin' : ''}`}>
                         <img src={wheelSpin} alt="" className='bg-white rounded-full' />
                         <p className={`absolute animate-bounce top-[40%] ${result < 10 ? 'left-[45%]' : 'left-[41%]'} text-5xl font-bold`}>{isSpinning ? '' : result}</p>
                     </div>
