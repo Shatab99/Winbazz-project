@@ -62,7 +62,7 @@ const Navbar = () => {
                         user && <>
                             {
                                 isLoading ? <div className='border-2 border-orange-600 px-6 py-1 rounded-3xl flex items-center '>
-                                    <VscLoading className='animate-spin font-bold text-black'/>
+                                    <VscLoading className='animate-spin font-bold text-white'/>
                                 </div> :
                                     <div onClick={() => refetch()} className='border-2 border-orange-600 px-3 rounded-3xl flex items-center gap-1 '>
                                         <GoPlusCircle />

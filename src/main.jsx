@@ -24,6 +24,7 @@ import History from './Pages/Profile/UserProfile/History';
 import Pending from './Pages/Profile/UserProfile/Pending';
 import UserHome from './Pages/Profile/UserProfile/UserHome';
 import WithdrawRequests from './Pages/Profile/WithdrawHandle/WithdrawRequests';
+import WheelGame from './Pages/Game/WheelGame/WheelGame';
 
 const router = createBrowserRouter([
   {
@@ -49,39 +50,43 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <PrivateRoute><Profile /></PrivateRoute>,
-        children : [
+        children: [
           {
-            path : 'users',
-            element : <AdminRoute><PrivateRoute><Users/></PrivateRoute></AdminRoute>
+            path: 'users',
+            element: <AdminRoute><PrivateRoute><Users /></PrivateRoute></AdminRoute>
           },
           {
-            path:'depositReq',
-            element : <AdminRoute><PrivateRoute><DepositRequest/></PrivateRoute></AdminRoute>
+            path: 'depositReq',
+            element: <AdminRoute><PrivateRoute><DepositRequest /></PrivateRoute></AdminRoute>
           },
           {
-            path : 'history',
-            element : <PrivateRoute><History/></PrivateRoute>
+            path: 'history',
+            element: <PrivateRoute><History /></PrivateRoute>
           },
           {
-            path : 'withdrawReq',
-            element : <AdminRoute><PrivateRoute><WithdrawRequests/></PrivateRoute></AdminRoute>
+            path: 'withdrawReq',
+            element: <AdminRoute><PrivateRoute><WithdrawRequests /></PrivateRoute></AdminRoute>
           },
           {
-            path : 'pending',
-            element : <PrivateRoute><Pending/></PrivateRoute>
+            path: 'pending',
+            element: <PrivateRoute><Pending /></PrivateRoute>
           },
           {
-            path : 'home',
-            element : <PrivateRoute><UserHome/></PrivateRoute>
+            path: 'home',
+            element: <PrivateRoute><UserHome /></PrivateRoute>
           },
         ]
       },
     ]
   },
   {
-    path : "/depositConfirm/:amount/:method",
-    element : <PrivateRoute><DepositConfirm/></PrivateRoute>
+    path: "/depositConfirm/:amount/:method",
+    element: <PrivateRoute><DepositConfirm /></PrivateRoute>
   },
+  {
+    path: "/wheelGame",
+    element: <PrivateRoute><WheelGame /></PrivateRoute>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
