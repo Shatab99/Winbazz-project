@@ -114,7 +114,7 @@ const WheelGame = () => {
                 <div className='flex justify-center'>
                     <button onClick={() => {
                         startSpin();
-                    }} disabled={isSpinning || num === null || !bet || bet > cred} className="btn btn-wide bg-green-600 text-lg mt-5">
+                    }} disabled={isSpinning || num === null || !bet || bet > cred} className="btn btn-wide bg-green-600 text-lg">
                         Spin
                     </button>
                 </div>
