@@ -45,8 +45,10 @@ const WheelGame = () => {
             setIsOpen(true)
             updateByGame({ randomResult, email, selectedNumbers, betAmount })
             setIsSpinning(false);
+        }, 2000); 
+        setTimeout(()=>{
             refetch()
-        }, 2000); // 3 seconds
+        },2100)
     };
 
 
@@ -98,7 +100,7 @@ const WheelGame = () => {
                 {/* Select Number */}
                 <div className='px-1'>
                     <h1 className='text-lg font-bold text-center animate-bounce mb-2'>Select Your Lucky Number</h1>
-                    <div className='grid grid-cols-4 gap-x-1 gap-y-2'>
+                    <div className='grid grid-cols-3 gap-x-1 gap-y-2'>
                         <div onClick={() => toggleNumberSelection(0)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(0) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>0</span>(2x)</div>
                         <div onClick={() => toggleNumberSelection(1)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(1) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>1</span>(2x)</div>
                         <div onClick={() => toggleNumberSelection(2)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(2) ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'} text-xs`}> <span className='text-lg'>2</span>(2x)</div>
@@ -116,15 +118,17 @@ const WheelGame = () => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <button onClick={() => {
-                        startSpin();
-                        refetch();
-                    }} disabled={isSpinning || selectedNumbers.length === 0 || !bet || bet * numLen > cred} className="btn btn-wide bg-green-600 text-lg">
-                        Spin
-                    </button>
+                    {
+                        isLoading ? '' : <button onClick={() => {
+                            startSpin();
+                            refetch();
+                        }} disabled={isSpinning || selectedNumbers.length === 0 || !bet || bet * numLen > cred} className="btn btn-wide bg-green-600 text-lg">
+                            Spin
+                        </button>
+                    }
                 </div>
             </div>
-            <WinModal isOpen={isOpen} setIsOpen={setIsOpen} email={email} result={result} selectedNumbers={selectedNumbers} refetch={refetch} />
+            <WinModal isOpen={isOpen} setIsOpen={setIsOpen} email={email} result={result} selectedNumbers={selectedNumbers} refetch={refetch} betAmount={betAmount} />
         </div>
     );
 };

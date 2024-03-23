@@ -1,12 +1,24 @@
+import { useEffect, useState } from "react";
 import Modal from "../../../Components/Modal";
 import winnerGif from '../../../assets/Icons/Game Icons/winnerGif.gif'
 // import loseGif from '../../../assets/Icons/Game Icons/loseGif.gif'
 
 
 
-const WinModal = ({ isOpen, setIsOpen, result , selectedNumbers, refetch}) => {
+const WinModal = ({ isOpen, setIsOpen, result, selectedNumbers, refetch, betAmount }) => {
 
+    const [winMoney, setWinMoney] = useState()
 
+    useEffect(() => {
+        if (selectedNumbers.includes(result)) {
+            if (result >= 3) {
+                setWinMoney(10 * betAmount)
+            }
+            else {
+                setWinMoney(2 * betAmount)
+            }
+        }
+    }, [selectedNumbers, winMoney, betAmount, result])
 
 
 
@@ -14,7 +26,7 @@ const WinModal = ({ isOpen, setIsOpen, result , selectedNumbers, refetch}) => {
         <Modal isOpen={isOpen} setIsOpen={setIsOpen} >
             <div className="flex flex-col items-center gap-4">
                 <img src={winnerGif} alt="" />
-                <p className="text-center font-bold text-lg">The Lucky Number is {result} and  {selectedNumbers?.includes(result) ? `Look Like you got one` : 'you lose ' } !! </p>
+                <p className="text-center font-bold text-lg"> {selectedNumbers?.includes(result) && 'Congras !! '}The Lucky Number is {result} and  {selectedNumbers?.includes(result) ? `you won ${winMoney} BDT ` : 'you lose '} !! </p>
                 <button onClick={() => {
                     refetch()
                     setIsOpen(false)
