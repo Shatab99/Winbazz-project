@@ -48,8 +48,16 @@ const depositApi = baseApi.injectEndpoints({
         getAllWithdraws : builder.query({
             query : ()=> '/withdraw',
             providesTags : ['deposits']
+        }),
+        updateByGame : builder.mutation({
+            query : (data) =>({
+                url : '/wheelgame',
+                method : "PATCH",
+                body : data
+            }),
+            invalidatesTags : ['users']
         })
     })
 })
 
-export const { useGetAllDepositsQuery, useSubmitDepositMutation, useDeleteDepositMutation, usePendigHistoryQuery, usePostHistoryMutation,useSeeHistoryQuery, useDeleteHistoryMutation, useGetAllWithdrawsQuery } = depositApi
+export const { useGetAllDepositsQuery, useSubmitDepositMutation, useDeleteDepositMutation, usePendigHistoryQuery, usePostHistoryMutation,useSeeHistoryQuery, useDeleteHistoryMutation, useGetAllWithdrawsQuery ,useUpdateByGameMutation } = depositApi

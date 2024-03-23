@@ -1,38 +1,40 @@
 import { useContext, useEffect, useState } from 'react';
 import wheelSpin from '../../../assets/Icons/Game Icons/wheelSpin.png'
 import WinModal from './WinModal';
-import { useGetUserByEmailQuery, useWithdrawCredMutation } from '../../../Redux/features/EndPoints/userApi';
+import { useGetUserByEmailQuery } from '../../../Redux/features/EndPoints/userApi';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { VscLoading } from "react-icons/vsc";
 import { Link } from 'react-router-dom';
+import { useUpdateByGameMutation } from '../../../Redux/features/EndPoints/depositApi';
 
 
 
 const WheelGame = () => {
     const [isSpinning, setIsSpinning] = useState(false);
     const [result, setResult] = useState(null);
-    const [num, setNum] = useState(null)
+    const [selectedNumbers, setSelectedNumbers] = useState([]);
     const [isOpen, setIsOpen] = useState(false)
-    const [isWin, setIsWin] = useState(false)
     const [bet, setBet] = useState()
     const [err, setErr] = useState('')
     const { user } = useContext(AuthContext)
     const email = user?.email
-    const { data: currentUser, isLoading, refetch } = useGetUserByEmailQuery(email)
-    const [withdrawCred,] = useWithdrawCredMutation()
-    const cred = currentUser?.credit
+    const { data: currentUser, isLoading, refetch } = useGetUserByEmailQuery(email, {
 
-    
-    // console.log(bet)
+    })
+    const cred = currentUser?.credit
+    const numLen = selectedNumbers.length;
+    const [updateByGame,] = useUpdateByGameMutation()
+
+    const betAmount = parseInt(bet)
 
     useEffect(() => {
-        if (bet > cred) {
+        if ((bet * numLen) > cred) {
             setErr('Not Enough Balance !')
         }
-        else{
+        else {
             setErr('')
         }
-    }, [bet, cred])
+    }, [bet, cred, numLen])
 
     const startSpin = () => {
         setIsSpinning(true);
@@ -40,18 +42,20 @@ const WheelGame = () => {
         setTimeout(() => {
             const randomResult = Math.floor(Math.random() * 11)
             setResult(randomResult)
-            refetch();
-            if (num === randomResult) {
-                setIsWin(true)
-                setIsOpen(true)
-            }
-            else {
-                setIsWin(false)
-                setIsOpen(true)
-                withdrawCred({ email, credit: { amount: bet } })
-            }
+            setIsOpen(true)
+            updateByGame({ randomResult, email, selectedNumbers, betAmount })
             setIsSpinning(false);
-        }, 3000); // 3 seconds
+            refetch()
+        }, 2000); // 3 seconds
+    };
+
+
+    const toggleNumberSelection = (number) => {
+        if (selectedNumbers.includes(number)) {
+            setSelectedNumbers(selectedNumbers.filter((num) => num !== number));
+        } else {
+            setSelectedNumbers([...selectedNumbers, number]);
+        }
     };
 
     return (
@@ -69,7 +73,7 @@ const WheelGame = () => {
                 <div className=''>
                     <div className={`relative mx-auto w-44 h-44 border-4 border-gray-300 rounded-full transition-transform duration-300 ${isSpinning ? 'animate-spin' : ''}`}>
                         <img src={wheelSpin} alt="" className='bg-white rounded-full' />
-                        <p className={`absolute animate-bounce top-[40%] ${result < 10 ? 'left-[45%]' : 'left-[41%]'} text-5xl font-bold`}>{isSpinning ? '' : result}</p>
+                        <p className={`absolute animate-bounce top-[40%] ${result < 10 ? 'left-[44%]' : 'left-[38%]'} text-4xl font-bold`}>{isSpinning ? '' : result}</p>
                     </div>
                 </div>
                 {/*Bet Part */}
@@ -92,21 +96,21 @@ const WheelGame = () => {
                 <p className='text-red-400 font-bold text-lg text-center'>{err}</p>
 
                 {/* Select Number */}
-                <div className='px-4'>
+                <div className='px-1'>
                     <h1 className='text-lg font-bold text-center animate-bounce mb-2'>Select Your Lucky Number</h1>
-                    <div className='grid grid-cols-4 gap-2'>
-                        <div onClick={() => setNum(0)} className={`btn btn-sm  font-bold ${num === 0 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>0</span> (2x)</div>
-                        <div onClick={() => setNum(1)} className={`btn btn-sm  font-bold ${num === 1 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>1</span> (2x)</div>
-                        <div onClick={() => setNum(2)} className={`btn btn-sm  font-bold ${num === 2 ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'} text-xs`}> <span className='text-lg'>2</span> (2x)</div>
-                        <div onClick={() => setNum(3)} className={`btn btn-sm  font-bold ${num === 3 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>3</span> (3x)</div>
-                        <div onClick={() => setNum(4)} className={`btn btn-sm  font-bold ${num === 4 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>4</span> (4x)</div>
-                        <div onClick={() => setNum(5)} className={`btn btn-sm  font-bold ${num === 5 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>5</span> (5x)</div>
-                        <div onClick={() => setNum(6)} className={`btn btn-sm  font-bold ${num === 6 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>6</span> (6x)</div>
-                        <div onClick={() => setNum(7)} className={`btn btn-sm  font-bold ${num === 7 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>7</span> (7x)</div>
-                        <div onClick={() => setNum(8)} className={`btn btn-sm  font-bold ${num === 8 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>8</span> (8x)</div>
-                        <div onClick={() => setNum(9)} className={`btn btn-sm  font-bold ${num === 9 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>9</span> (9x)</div>
-                        <div onClick={() => setNum(10)} className={`btn col-span-2 btn-sm  font-bold ${num === 10 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}  `}><span className='text-lg'>10</span> <p>(10x)</p></div>
-                        <div onClick={() => setNum(11)} className={`btn col-span-4 btn-sm  font-bold ${num === 11 ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>11</span> <p>(11x)</p></div>
+                    <div className='grid grid-cols-4 gap-x-1 gap-y-2'>
+                        <div onClick={() => toggleNumberSelection(0)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(0) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>0</span>(2x)</div>
+                        <div onClick={() => toggleNumberSelection(1)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(1) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>1</span>(2x)</div>
+                        <div onClick={() => toggleNumberSelection(2)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(2) ? 'bg-black border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'} text-xs`}> <span className='text-lg'>2</span>(2x)</div>
+                        <div onClick={() => toggleNumberSelection(3)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(3) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>3</span>(10x)</div>
+                        <div onClick={() => toggleNumberSelection(4)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(4) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>4</span>(10x)</div>
+                        <div onClick={() => toggleNumberSelection(5)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(5) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>5</span>(10x)</div>
+                        <div onClick={() => toggleNumberSelection(6)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(6) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>6</span>(10x)</div>
+                        <div onClick={() => toggleNumberSelection(7)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(7) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>7</span>(10x)</div>
+                        <div onClick={() => toggleNumberSelection(8)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(8) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>8</span>(10x)</div>
+                        <div onClick={() => toggleNumberSelection(9)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(9) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-lg'>9</span>(10x)</div>
+                        <div onClick={() => toggleNumberSelection(10)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(10) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}  `}><span className='text-sm'>10</span>(10x)</div>
+                        <div onClick={() => toggleNumberSelection(11)} className={`btn btn-sm  font-bold ${selectedNumbers.includes(11) ? 'bg-black text-xs border-2 border-yellow-400 text-yellow-400' : 'bg-white text-black'}`}><span className='text-sm'>11</span>(10x)</div>
 
                     </div>
                 </div>
@@ -114,12 +118,13 @@ const WheelGame = () => {
                 <div className='flex justify-center'>
                     <button onClick={() => {
                         startSpin();
-                    }} disabled={isSpinning || num === null || !bet || bet > cred} className="btn btn-wide bg-green-600 text-lg">
+                        refetch();
+                    }} disabled={isSpinning || selectedNumbers.length === 0 || !bet || bet * numLen > cred} className="btn btn-wide bg-green-600 text-lg">
                         Spin
                     </button>
                 </div>
             </div>
-            <WinModal isOpen={isOpen} setIsOpen={setIsOpen} isWin={isWin} email={email} bet={bet} refetch={refetch} />
+            <WinModal isOpen={isOpen} setIsOpen={setIsOpen} email={email} result={result} selectedNumbers={selectedNumbers} refetch={refetch} />
         </div>
     );
 };
