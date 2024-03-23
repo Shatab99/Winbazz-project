@@ -25,6 +25,7 @@ import Pending from './Pages/Profile/UserProfile/Pending';
 import UserHome from './Pages/Profile/UserProfile/UserHome';
 import WithdrawRequests from './Pages/Profile/WithdrawHandle/WithdrawRequests';
 import WheelGame from './Pages/Game/WheelGame/WheelGame';
+import CoinFlipGame from './Pages/Game/CoinFlip/CoinFlipGame';
 
 const router = createBrowserRouter([
   {
@@ -86,7 +87,11 @@ const router = createBrowserRouter([
   {
     path: "/wheelGame",
     element: <PrivateRoute><WheelGame /></PrivateRoute>
-  }
+  },
+  {
+    path: "/coinFlip",
+    element: <PrivateRoute><CoinFlipGame /></PrivateRoute>
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
