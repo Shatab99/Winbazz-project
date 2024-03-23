@@ -6,6 +6,7 @@ import { AuthContext } from '../../../Providers/AuthProvider';
 import { VscLoading } from "react-icons/vsc";
 import { Link } from 'react-router-dom';
 import { useUpdateByGameMutation } from '../../../Redux/features/EndPoints/depositApi';
+import LowBalWarning from '../../../Components/LowBalWarning';
 
 
 
@@ -14,18 +15,23 @@ const WheelGame = () => {
     const [result, setResult] = useState(null);
     const [selectedNumbers, setSelectedNumbers] = useState([]);
     const [isOpen, setIsOpen] = useState(false)
+    const [isOpenLb, setIsOpenLb] = useState(false)
     const [bet, setBet] = useState()
     const [err, setErr] = useState('')
     const { user } = useContext(AuthContext)
     const email = user?.email
-    const { data: currentUser, isLoading, refetch } = useGetUserByEmailQuery(email, {
-
-    })
+    const { data: currentUser, isLoading, refetch } = useGetUserByEmailQuery(email)
     const cred = currentUser?.credit
     const numLen = selectedNumbers.length;
     const [updateByGame,] = useUpdateByGameMutation()
 
     const betAmount = parseInt(bet)
+
+    useEffect(()=>{
+        if(cred<10){
+            setIsOpenLb(true)
+        }
+    }, [])
 
     useEffect(() => {
         if ((bet * numLen) > cred) {
@@ -129,6 +135,7 @@ const WheelGame = () => {
                 </div>
             </div>
             <WinModal isOpen={isOpen} setIsOpen={setIsOpen} email={email} result={result} selectedNumbers={selectedNumbers} refetch={refetch} betAmount={betAmount} />
+            <LowBalWarning isOpenLb={isOpenLb} setIsOpenLb={setIsOpenLb} />
         </div>
     );
 };
