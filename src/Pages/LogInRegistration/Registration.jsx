@@ -28,7 +28,7 @@ const Registration = ({ setIsOpen, setShowReg }) => {
         setLoading(true)
         const form = e.target;
         const name = form.name.value
-        const email = form.email.value
+        const email = form.email.value.toLowerCase()
         const refered = form.refer.value
         const password = form.password.value
         register(email, password)
@@ -87,7 +87,7 @@ const Registration = ({ setIsOpen, setShowReg }) => {
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
                     <MdBarcodeReader />
-                    <input type="number" name="refer" className="grow " placeholder="Refer Code (Optional)" />
+                    <input type="text" name="refer" className="grow " placeholder="Refer Code (Optional)" />
                 </label>
                 <div className="form-control">
                     <label className="cursor-pointer label gap-2">

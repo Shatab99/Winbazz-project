@@ -13,7 +13,7 @@ const Games = () => {
                     <p className='font-semibold'>Spin to earn</p>
                 </Link>
                 <Link to={'/coinFlip'} className='flex flex-col items-center '>
-                    <img src={CoinIcon} alt="" className='w-20'/>
+                    <img src={CoinIcon} alt="" className='w-20 p-2'/>
                     <p className='font-semibold'>Flip to earn</p>
                 </Link>
             </div>
