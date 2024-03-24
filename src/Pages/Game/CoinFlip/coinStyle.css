@@ -11,6 +11,6 @@
   }
   
   .animate-flip {
-    animation: flip 3s ease-in-out forwards;
+    animation: flip 0.3s ease-in-out infinite ;
   }
   

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import wheelIcon from '../../assets/Icons/Game Icons/wheelIcon.png'
+import wheelIcon from '../../assets/Icons/GameIcons/wheelIcon.png'
 import CoinIcon from '../../assets/Icons/CoinFlip/CoinIcon.png'
 
 

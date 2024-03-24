@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Modal from "../../../Components/Modal";
-import winnerGif from '../../../assets/Icons/Game Icons/winnerGif.gif'
+import winnerGif from '../../../assets/Icons/GameIcons/winnerGif.gif'
 // import loseGif from '../../../assets/Icons/Game Icons/loseGif.gif'
 
 
