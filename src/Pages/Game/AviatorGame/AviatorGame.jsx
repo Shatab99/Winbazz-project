@@ -65,7 +65,7 @@ const AviatorGame = () => {
                 </Link>
             </div>
             <div className='flex flex-col items-center gap-8 mt-16'>
-                <div className='mx-auto rounded-2xl' style={{ position: 'relative', height: '200px', width: '80%', backgroundImage: `url(${AviatorSky})` }}>
+                <div className='mx-auto rounded-2xl' style={{ position: 'relative', height: '270px', width: '90%', backgroundImage: `url(${AviatorSky})` }}>
                     {
                         welcome ?
                             <div className='absolute flex flex-col items-center  text-black top-[40%] text-xl font-bold left-[10%] animate-bounce'>
@@ -76,7 +76,7 @@ const AviatorGame = () => {
                                 }}>
                                     <Lottie
                                         animationData={FlyingPlaneAnimation}
-                                        className='w-16'
+                                        className='w-24'
                                     />
                                 </div>
                             </div>
@@ -88,7 +88,7 @@ const AviatorGame = () => {
                             }}>
                                 <Lottie
                                     animationData={isFlying ? FlyingPlaneAnimation : BlustAnimation}
-                                    className='w-16'
+                                    className='w-24'
                                 />
                             </div>
                     }
