@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Img1 from '../../assets/Banner/1.png'
-import Img2 from '../../assets/Banner/2.png'
-import Img3 from '../../assets/Banner/3.png'
+import Img1 from '../../assets/Banner/1.jpg'
+import Img2 from '../../assets/Banner/2.jpg'
+import Img3 from '../../assets/Banner/3.jpg'
 
 // Import Swiper styles
 import 'swiper/css';

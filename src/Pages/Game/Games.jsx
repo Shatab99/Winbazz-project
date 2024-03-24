@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import wheelIcon from '../../assets/Icons/GameIcons/wheelIcon.png'
 import CoinIcon from '../../assets/Icons/CoinFlip/CoinIcon.png'
+import AviatorIcon from "../../assets/Icons/Aviator/AviatorIcon.jpg"
 
 
 const Games = () => {
@@ -15,6 +16,10 @@ const Games = () => {
                 <Link to={'/coinFlip'} className='flex flex-col items-center '>
                     <img src={CoinIcon} alt="" className='w-20 p-2'/>
                     <p className='font-semibold'>Flip to earn</p>
+                </Link>
+                <Link to={'/aviatorGame'} className='flex flex-col items-center '>
+                    <img src={AviatorIcon} alt="" className='w-20 h-20 rounded-full p-2'/>
+                    <p className='font-semibold'>Aviator</p>
                 </Link>
             </div>
         </div>

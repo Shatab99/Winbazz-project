@@ -26,6 +26,7 @@ import UserHome from './Pages/Profile/UserProfile/UserHome';
 import WithdrawRequests from './Pages/Profile/WithdrawHandle/WithdrawRequests';
 import WheelGame from './Pages/Game/WheelGame/WheelGame';
 import CoinFlipGame from './Pages/Game/CoinFlip/CoinFlipGame';
+import AviatorGame from './Pages/Game/AviatorGame/AviatorGame';
 
 const router = createBrowserRouter([
   {
@@ -92,6 +93,11 @@ const router = createBrowserRouter([
     path: "/coinFlip",
     element: <PrivateRoute><CoinFlipGame /></PrivateRoute>
   },
+  {
+    path: "/aviatorGame",
+    element: <PrivateRoute><AviatorGame/></PrivateRoute>
+  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

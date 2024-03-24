@@ -1,4 +1,4 @@
-import bellowImg from "../../assets/Banner/bellow banner.png"
+import bellowImg from "../../assets/Banner/bellow banner.jpg"
 
 const SecondBanner = () => {
     return (
