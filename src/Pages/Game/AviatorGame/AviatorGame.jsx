@@ -141,7 +141,7 @@ const AviatorGame = () => {
                         {isLoading ? <VscLoading className='animate-spin' /> : `${cred} BDT`}
                     </div>
                     <h1 className="text-xl text-center font-bold">Aviator Game !</h1>
-                    <Link to={'/'} className='btn btn-sm bg-red-700 rounded-2xl'>
+                    <Link onClick={()=>updateByAviator(gameData)} to={'/'} className='btn btn-sm bg-red-700 rounded-2xl'>
                         Exit
                     </Link>
                 </div>

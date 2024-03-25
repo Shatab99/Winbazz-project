@@ -27,6 +27,7 @@ import WithdrawRequests from './Pages/Profile/WithdrawHandle/WithdrawRequests';
 import WheelGame from './Pages/Game/WheelGame/WheelGame';
 import CoinFlipGame from './Pages/Game/CoinFlip/CoinFlipGame';
 import AviatorGame from './Pages/Game/AviatorGame/AviatorGame';
+import Ludo from './Pages/Game/Ludo/Ludo';
 
 const router = createBrowserRouter([
   {
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
   {
     path: "/aviatorGame",
     element: <PrivateRoute><AviatorGame/></PrivateRoute>
+  },
+  {
+    path: "/ludo",
+    element: <PrivateRoute><Ludo/></PrivateRoute>
   },
 
 ]);
