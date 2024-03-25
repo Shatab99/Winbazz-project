@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useDebugValue } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { useGetUserByEmailQuery } from '../../../Redux/features/EndPoints/userApi';
 import { VscLoading } from 'react-icons/vsc';
@@ -45,7 +45,7 @@ const AviatorGame = () => {
 
     useEffect(() => {
         BGMmusic.loop = true;
-        BGMmusic.volume = 0.2;
+        BGMmusic.volume = 0.1;
         BGMmusic.play()
 
         return () => {
