@@ -56,8 +56,16 @@ const depositApi = baseApi.injectEndpoints({
                 body : data
             }),
             invalidatesTags : ['users']
+        }),
+        updateByAviator : builder.mutation({
+            query : (data)=>({
+                url : '/aviatorgame',
+                method : "PATCH",
+                body : data
+            }),
+            invalidatesTags : ['users']
         })
     })
 })
 
-export const { useGetAllDepositsQuery, useSubmitDepositMutation, useDeleteDepositMutation, usePendigHistoryQuery, usePostHistoryMutation,useSeeHistoryQuery, useDeleteHistoryMutation, useGetAllWithdrawsQuery ,useUpdateByGameMutation } = depositApi
+export const { useGetAllDepositsQuery, useSubmitDepositMutation, useDeleteDepositMutation, usePendigHistoryQuery, usePostHistoryMutation,useSeeHistoryQuery, useDeleteHistoryMutation, useGetAllWithdrawsQuery ,useUpdateByGameMutation, useUpdateByAviatorMutation } = depositApi
