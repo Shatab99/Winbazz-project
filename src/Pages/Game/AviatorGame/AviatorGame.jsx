@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useDebugValue } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { useGetUserByEmailQuery } from '../../../Redux/features/EndPoints/userApi';
 import { VscLoading } from 'react-icons/vsc';
@@ -7,11 +7,14 @@ import FlyingPlaneAnimation from "../../../assets/Animations/FlyingPlaneAnimatio
 import BlustAnimation from "../../../assets/Animations/BlustAnimation.json"
 import Lottie from 'lottie-react';
 import AviatorBg from "../../../assets/Icons/Aviator/AviatorBg.jpg"
-import AviatorSky from "../../../assets/Icons/Aviator/AviatorSky.jpg"
+import AviatorSky from "../../../assets/Icons/Aviator/AviatorSky.gif"
 import RBAModal from './RBAModal';
 import LBAModal from './LBAModal';
 import { useUpdateByAviatorMutation } from '../../../Redux/features/EndPoints/depositApi';
 import AviatorResult from './AviatorResult';
+import CashOutAudio from "../../../assets/Audios/Aviator/CashOut.mp3"
+import FlyingAudio from "../../../assets/Audios/Aviator/FlyingAudio.mp3"
+import AviatorBgM from "../../../assets/Audios/Aviator/AviatorBgMusic.mp3"
 
 const AviatorGame = () => {
     const [planePosition, setPlanePosition] = useState(0);
@@ -35,10 +38,33 @@ const AviatorGame = () => {
     const [updateByAviator,] = useUpdateByAviatorMutation()
     const [isResult, setIsResult] = useState(false)
     const [err, setErr] = useState(null)
-    const [disAblePlay, setDisAblePlay]= useState(false)
+    const [disAblePlay, setDisAblePlay] = useState(false)
+    const [cashOutSound] = useState(new Audio(CashOutAudio))
+    const [FlyingSound] = useState(new Audio(FlyingAudio))
+    const [BGMmusic] = useState(new Audio(AviatorBgM))
+
+    useEffect(() => {
+        BGMmusic.loop = true;
+        BGMmusic.volume = 0.2;
+        BGMmusic.play()
+
+        return () => {
+            BGMmusic.pause();
+            // BGMmusic.currentTime = 0;
+        }
+    },)
 
 
-
+    useEffect(() => {
+        if (isFlying) {
+            FlyingSound.volume = 0.5;
+            FlyingSound.play()
+        }
+        else {
+            FlyingSound.pause();
+            FlyingSound.currentTime = 0;
+        }
+    }, [FlyingSound, isFlying])
 
 
 
@@ -61,6 +87,11 @@ const AviatorGame = () => {
             setErr(null)
         }
     }, [lbAmount, rbAmount, err, cred])
+
+    const handleAudio = () => {
+        cashOutSound.volume = 0.5; // Adjust the volume if needed
+        cashOutSound.play();
+    }
 
 
     useEffect(() => {
@@ -170,22 +201,24 @@ const AviatorGame = () => {
                                         <button disabled={isFlying} onClick={() => {
                                             setIsOpenlb(true);
                                             refetch();
-                                        }} className='btn btn-sm bg-gray-300 text-black font-bold'>{lBet} BDT</button>
+                                        }} className='btn bg-gray-300 text-black font-bold'>{lBet} BDT</button>
                                         <button disabled={!isFlying || disAbledLB} onClick={() => {
                                             setCashOutLb(multiplier);
-                                            setDisAbledLB(true)
-                                        }} className='btn btn-sm bg-gray-300 text-black font-bold'>Cash Out</button>
+                                            setDisAbledLB(true);
+                                            handleAudio();
+                                        }} className='btn  bg-gray-300 text-black font-bold'>Cash Out</button>
                                     </div>
                                     <div className='flex flex-col gap-2'>
                                         <p className='font-bold text-lg text-center'>{cashOutRb.toFixed(2)} x</p>
                                         <button disabled={isFlying} onClick={() => {
                                             setIsOpenRb(true);
                                             refetch();
-                                        }} className='btn btn-sm bg-gray-300 text-black font-bold'>{rBet} BDT</button>
+                                        }} className='btn  bg-gray-300 text-black font-bold'>{rBet} BDT</button>
                                         <button disabled={!isFlying || disAbledRB} onClick={() => {
                                             setCashOutRb(multiplier);
                                             setDisAbledRB(true);
-                                        }} className='btn btn-sm bg-gray-300 text-black font-bold'>Cash Out</button>
+                                            handleAudio();
+                                        }} className='btn  bg-gray-300 text-black font-bold'>Cash Out</button>
                                     </div>
                                 </div>
 
