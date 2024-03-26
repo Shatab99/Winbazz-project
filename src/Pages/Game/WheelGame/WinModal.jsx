@@ -5,7 +5,7 @@ import winnerGif from '../../../assets/Icons/GameIcons/winnerGif.gif'
 
 
 
-const WinModal = ({ isOpen, setIsOpen, result, selectedNumbers, refetch, betAmount }) => {
+const WinModal = ({ isOpen, setIsOpen, result, selectedNumbers, refetch, betAmount, winSound }) => {
 
     const [winMoney, setWinMoney] = useState()
 
@@ -29,6 +29,7 @@ const WinModal = ({ isOpen, setIsOpen, result, selectedNumbers, refetch, betAmou
                 <p className="text-center font-bold text-lg"> {selectedNumbers?.includes(result) && 'Congras !! '}The Lucky Number is {result} and  {selectedNumbers?.includes(result) ? `you won ${winMoney} BDT ` : 'you lose '} !! </p>
                 <button onClick={() => {
                     refetch()
+                    winSound.pause()
                     setIsOpen(false)
                 }} className="btn btn-sm btn-wide bg-green-800 text-white">Play Again</button>
             </div>

@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 import { useUpdateByGameMutation } from '../../../Redux/features/EndPoints/depositApi';
 import LowBalWarning from '../../../Components/LowBalWarning';
 import SpinBg from "../../../assets/Icons/GameIcons/SpinBg.jpg"
+import SpinAudio from "../../../assets/Audios/WheelGamee/spiningSound.wav"
+import StartAudio from "../../../assets/Audios/WheelGamee/startSound.wav"
+import WinAudio from "../../../assets/Audios/WheelGamee/winSound.wav"
 
 
 
@@ -25,6 +28,9 @@ const WheelGame = () => {
     const cred = currentUser?.credit
     const numLen = selectedNumbers.length;
     const [updateByGame,] = useUpdateByGameMutation()
+    const [spinSound] = useState(new Audio(SpinAudio))
+    const [startSound] = useState(new Audio(StartAudio))
+    const [winSound] = useState(new Audio(WinAudio))
 
     const betAmount = parseInt(bet)
 
@@ -33,6 +39,16 @@ const WheelGame = () => {
             setIsOpenLb(true)
         }
     }, [])
+
+    useEffect(()=>{
+        if(isSpinning){
+            spinSound.play()
+        }
+        else{
+            spinSound.pause()
+            spinSound.currentTime = 0
+        }
+    },[isSpinning, spinSound])
 
     useEffect(() => {
         if ((bet * numLen) > cred) {
@@ -45,11 +61,13 @@ const WheelGame = () => {
 
     const startSpin = () => {
         setIsSpinning(true);
+        startSound.play();
         // Simulate spinning logic
         setTimeout(() => {
             const randomResult = Math.floor(Math.random() * 11)
             setResult(randomResult)
             setIsOpen(true)
+            winSound.play()
             updateByGame({ randomResult, email, selectedNumbers, betAmount })
             setIsSpinning(false);
         }, 2000);
@@ -135,7 +153,7 @@ const WheelGame = () => {
                         }
                     </div>
                 </div>
-                <WinModal isOpen={isOpen} setIsOpen={setIsOpen} email={email} result={result} selectedNumbers={selectedNumbers} refetch={refetch} betAmount={betAmount} />
+                <WinModal winSound={winSound} isOpen={isOpen} setIsOpen={setIsOpen} email={email} result={result} selectedNumbers={selectedNumbers} refetch={refetch} betAmount={betAmount} />
                 <LowBalWarning isOpenLb={isOpenLb} setIsOpenLb={setIsOpenLb} />
             </div>
 

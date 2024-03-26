@@ -40,8 +40,29 @@ const userApi = baseApi.injectEndpoints({
                 body : credit
             }),
             invalidatesTags:['users','deposits']
+        }),
+        getReferUsers : builder.query({
+            query : (referId) => `/refer/${referId}`
+        }),
+        updatePhone : builder.mutation ({
+            query : ({email, number}) =>({
+                url : `/updatePhone/${email}`,
+                method : "PATCH",
+                body : number
+            }),
+            invalidatesTags : ['users']
+        }),
+        getAdminPhone : builder.query({
+            query : (id)=>`/adminPhone/${id}`
+        }),
+        upadteAdminPhone : builder.mutation ({
+            query : (phone)=>({
+                url : '/updateAdminPhone',
+                method : 'PATCH',
+                body : phone
+            })
         })
     })
 })
 
-export const { useGetAllUserQuery, useCreatUserMutation, useDeleteUserDbMutation , useGetUserByEmailQuery , useUpdateCredMutation , useWithdrawCredMutation} = userApi
+export const { useGetAllUserQuery, useCreatUserMutation, useDeleteUserDbMutation , useGetUserByEmailQuery , useUpdateCredMutation , useWithdrawCredMutation, useGetReferUsersQuery, useUpdatePhoneMutation, useGetAdminPhoneQuery, useUpadteAdminPhoneMutation} = userApi
