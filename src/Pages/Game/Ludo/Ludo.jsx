@@ -107,12 +107,24 @@ const Ludo = () => {
                 {/* Selcet Number part */}
                 <h1>Select Lucky Number Of Dice</h1>
                 <div className="grid grid-cols-3 gap-2">
-                    <button onClick={() => setBetNum(1)} className={`btn font-bold btn-circle ${betNum === 1 ? 'text-white bg-black border-2 border-white' : 'bg-slate-100 text-black '}`}>1</button>
-                    <button onClick={() => setBetNum(2)} className={`btn font-bold btn-circle ${betNum === 2 ? 'text-white bg-black border-2 border-white' : 'bg-slate-100 text-black '}`}>2</button>
-                    <button onClick={() => setBetNum(3)} className={`btn font-bold btn-circle ${betNum === 3 ? 'text-white bg-black border-2 border-white' : 'bg-slate-100 text-black '}`}>3</button>
-                    <button onClick={() => setBetNum(4)} className={`btn font-bold btn-circle ${betNum === 4 ? 'text-white bg-black border-2 border-white' : 'bg-slate-100 text-black '}`}>4</button>
-                    <button onClick={() => setBetNum(5)} className={`btn font-bold btn-circle ${betNum === 5 ? 'text-white bg-black border-2 border-white' : 'bg-slate-100 text-black '}`}>5</button>
-                    <button onClick={() => setBetNum(6)} className={`btn font-bold btn-circle ${betNum === 6 ? 'text-white bg-black border-2 border-white' : 'bg-slate-100 text-black '}`}>6</button>
+                    <button onClick={() => setBetNum(1)} className={`btn font-bold btn-circle ${betNum === 1 ? 'text-white bg-black border-2 border-orange-400' : 'border-black '}`}>
+                        <img src={Dice1} alt="" className="rounded-full p-1 " />
+                    </button>
+                    <button onClick={() => setBetNum(2)} className={`btn font-bold btn-circle ${betNum === 2 ? 'text-white bg-black border-2 border-orange-400' : 'border-black '}`}>
+                        <img src={Dice2} alt="" className="rounded-full p-1 " />
+                    </button>
+                    <button onClick={() => setBetNum(3)} className={`btn font-bold btn-circle ${betNum === 3 ? 'text-white bg-black border-2 border-orange-400' : 'border-black '}`}>
+                        <img src={Dice3} alt="" className="rounded-full p-1 " />
+                    </button>
+                    <button onClick={() => setBetNum(4)} className={`btn font-bold btn-circle ${betNum === 4 ? 'text-white bg-black border-2 border-orange-400' : 'border-black '}`}>
+                        <img src={Dice4} alt="" className="rounded-full p-1 " />
+                    </button>
+                    <button onClick={() => setBetNum(5)} className={`btn font-bold btn-circle ${betNum === 5 ? 'text-white bg-black border-2 border-orange-400' : 'border-black '}`}>
+                        <img src={Dice5} alt="" className="rounded-full p-1 " />
+                    </button>
+                    <button onClick={() => setBetNum(6)} className={`btn font-bold btn-circle ${betNum === 6 ? 'text-white bg-black border-2 border-orange-400' : 'border-black '}`}>
+                        <img src={Dice6} alt="" className="rounded-full p-1 " />
+                    </button>
 
                 </div>
                 <p className="font-bold text-red-400 animate-pulse">{err}</p>
