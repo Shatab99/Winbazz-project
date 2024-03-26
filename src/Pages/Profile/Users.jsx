@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 const Users = () => {
 
-    const { data: users, isLoading } = useGetAllUserQuery()
+    const { data: users, isLoading, refetch } = useGetAllUserQuery()
     const [isOpen, setIsOpen] = useState(false)
     const [userModal, setUserModal] = useState({})
 
@@ -38,7 +38,7 @@ const Users = () => {
                     }
                 </div>
             </InfiniteScroll>
-            <ShowUserModal isOpen={isOpen} setIsOpen={setIsOpen} user={userModal} />
+            <ShowUserModal refetch={refetch} isOpen={isOpen} setIsOpen={setIsOpen} user={userModal} />
 
         </div>
     );
