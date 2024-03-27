@@ -26,7 +26,7 @@ const Games = () => {
                     <img src={LudoIcon} alt="" className='w-20 h-20 rounded-full p-2'/>
                     <p className='font-semibold'>Ludo</p>
                 </Link>
-                <Link to={'/dropingBall'} className='flex flex-col items-center '>
+                <Link to={'/lotteryGame'} className='flex flex-col items-center '>
                     <img src={LudoIcon} alt="" className='w-20 h-20 rounded-full p-2'/>
                     <p className='font-semibold'>Droping Ball</p>
                 </Link>

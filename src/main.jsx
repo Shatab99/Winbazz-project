@@ -28,7 +28,7 @@ import WheelGame from './Pages/Game/WheelGame/WheelGame';
 import CoinFlipGame from './Pages/Game/CoinFlip/CoinFlipGame';
 import AviatorGame from './Pages/Game/AviatorGame/AviatorGame';
 import Ludo from './Pages/Game/Ludo/Ludo';
-import DropingBall from './Pages/Game/DropingBall/DropingBall';
+import LotteryGame from './Pages/Game/LotteryGame/LotterGame';
 
 const router = createBrowserRouter([
   {
@@ -104,8 +104,8 @@ const router = createBrowserRouter([
     element: <PrivateRoute><Ludo/></PrivateRoute>
   },
   {
-    path: "/dropingBall",
-    element: <PrivateRoute><DropingBall/></PrivateRoute>
+    path: "/lotteryGame",
+    element: <PrivateRoute><LotteryGame/></PrivateRoute>
   },
 
 ]);

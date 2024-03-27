@@ -3,9 +3,10 @@ import logo from '../../assets/Logo/logo.png'
 import UserLogModal from '../LogInRegistration/UserLogModal';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { GoPlusCircle } from "react-icons/go";
-import { FaBell } from "react-icons/fa";
 import { useGetUserByEmailQuery } from '../../Redux/features/EndPoints/userApi';
 import { VscLoading } from "react-icons/vsc";
+import { Link } from 'react-router-dom';
+import { FaUser } from 'react-icons/fa6';
 
 
 
@@ -32,9 +33,11 @@ const Navbar = () => {
             user ? <>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="">
-                        <p className='font-semibold flex items-center gap-1 '><span className='text-sm'>Hey, {userName}</span> <FaBell className='text-2xl' /></p>
+                        <p  className='font-semibold flex items-center gap-1 '><span className='text-sm'>Hey, {userName}</span> <FaUser className="text-2xl" />
+                        </p>
                     </div>
                     <ul tabIndex={0} className="menu z-40 menu-sm dropdown-content mt-3  p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><Link to={'/profile/home'}>Profile</Link></li>
                         <li><a onClick={handleLogOut}>Logout</a></li>
                     </ul>
                 </div>
@@ -62,7 +65,7 @@ const Navbar = () => {
                         user && <>
                             {
                                 isLoading ? <div className='border-2 border-orange-600 px-6 py-1 rounded-3xl flex items-center '>
-                                    <VscLoading className='animate-spin font-bold text-white'/>
+                                    <VscLoading className='animate-spin font-bold text-white' />
                                 </div> :
                                     <div onClick={() => refetch()} className='border-2 border-orange-600 px-3 rounded-3xl flex items-center gap-1 '>
                                         <GoPlusCircle />

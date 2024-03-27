@@ -1,4 +1,5 @@
 import Games from "../Game/Games";
+import LiveChat from "../LiveChat/LiveChat";
 import Banner from "./Banner";
 import Footer from "./Footer";
 import Notice from "./Notice";
@@ -12,6 +13,7 @@ const Home = () => {
             <Banner/>
             <Games/>
             <SecondBanner/>
+            <LiveChat/>
             <Footer/>
         </div>
     );

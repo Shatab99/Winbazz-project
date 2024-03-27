@@ -1,0 +1,97 @@
+@keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .App {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .bg-blue-500 {
+    background-color: #3b82f6;
+  }
+  
+  .bg-green-500 {
+    background-color: #10b981;
+  }
+  
+  .bg-gray-500 {
+    background-color: #6b7280;
+  }
+  
+  .bg-yellow-400 {
+    background-color: #f59e0b;
+  }
+  
+  .text-white {
+    color: #ffffff;
+  }
+  
+  .border-gray-300 {
+    border-color: #d1d5db;
+  }
+  
+  .rounded-full {
+    border-radius: 9999px;
+  }
+  
+  .font-bold {
+    font-weight: 700;
+  }
+  
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .space-x-2 > * {
+    margin-right: 0.5rem;
+  }
+  
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .animate-rotation {
+    animation: rotate 2s linear infinite;
+  }
+  
+  .animate-bounce {
+    animation: bounce 0.5s ease infinite;
+  }
+  
