@@ -8,9 +8,10 @@ import { Link } from 'react-router-dom';
 import { useUpdateByGameMutation } from '../../../Redux/features/EndPoints/depositApi';
 import LowBalWarning from '../../../Components/LowBalWarning';
 import SpinBg from "../../../assets/Icons/GameIcons/SpinBg.jpg"
-import SpinAudio from "../../../assets/Audios/WheelGamee/spiningSound.wav"
+import SpinAudio from "../../../assets/Audios/WheelGamee/startSound.mp3"
 import StartAudio from "../../../assets/Audios/WheelGamee/startSound.wav"
 import WinAudio from "../../../assets/Audios/WheelGamee/winSound.wav"
+import "./wheelStyle.css"
 
 
 
@@ -98,7 +99,7 @@ const WheelGame = () => {
                 </div>
                 <div className='flex flex-col gap-3'>
                     <div className=''>
-                        <div className={`relative mx-auto w-44 h-44 border-4 border-gray-300 rounded-full transition-transform duration-300 ${isSpinning ? 'animate-spin' : ''}`}>
+                        <div className={`relative mx-auto w-44 h-44 border-4 border-gray-300 rounded-full transition-transform duration-300 ${isSpinning ? 'rolling' : ''}`}>
                             <img src={wheelSpin} alt="" className='bg-white rounded-full' />
                             <p className={`absolute animate-bounce top-[40%] ${result < 10 ? 'left-[44%]' : 'left-[38%]'} text-4xl font-bold`}>{isSpinning ? '' : result}</p>
                         </div>
