@@ -55,7 +55,12 @@ const DepositConfirm = () => {
                             <p className="text-center font-semibold">Please make your transfer to the current {method} number shown below. Ensure you have entered the correct transaction ID.</p>
                             <div className="flex flex-col items-start gap-3 font-semibold">
                                 <div>Amount : {amount} BDT</div>
-                                <div>{method}  : <span className="bg-yellow-200 py-2 px-2 rounded-lg text-black">{method === "Rocket" ? adminPhone.phone : adminPhone.phone.slice(0,11)}</span></div>
+                                <div>{method}  : <span className="bg-yellow-200 py-2 px-2 rounded-lg text-black">
+                                    {method === "Bkash" && adminPhone?.bkash}
+                                    {method === "Nagad" && adminPhone?.nagad}
+                                    {method === "Rocket" && adminPhone?.rocket}
+                                    {method === "Upay" && adminPhone?.upay}
+                                </span></div>
                                 <div className="flex items-center gap-2">
                                     <p>Send-Money From : </p>
                                     <input onChange={(e) => setPhone(e.target.value)} type="number" placeholder="Phone Number" className="input input-bordered input-sm  max-w-xs" />

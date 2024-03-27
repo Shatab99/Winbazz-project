@@ -55,14 +55,35 @@ const userApi = baseApi.injectEndpoints({
         getAdminPhone : builder.query({
             query : (id)=>`/adminPhone/${id}`
         }),
-        upadteAdminPhone : builder.mutation ({
+        upadteBkash : builder.mutation ({
             query : (phone)=>({
-                url : '/updateAdminPhone',
+                url : '/updateBkash',
                 method : 'PATCH',
                 body : phone
             })
-        })
+        }),
+        upadteNagad : builder.mutation ({
+            query : (phone)=>({
+                url : '/updateNagad',
+                method : 'PATCH',
+                body : phone
+            })
+        }),
+        upadteRocket : builder.mutation ({
+            query : (phone)=>({
+                url : '/updateRocket',
+                method : 'PATCH',
+                body : phone
+            })
+        }),
+        upadteUpay : builder.mutation ({
+            query : (phone)=>({
+                url : '/updateUpay',
+                method : 'PATCH',
+                body : phone
+            })
+        }),
     })
 })
 
-export const { useGetAllUserQuery, useCreatUserMutation, useDeleteUserDbMutation , useGetUserByEmailQuery , useUpdateCredMutation , useWithdrawCredMutation, useGetReferUsersQuery, useUpdatePhoneMutation, useGetAdminPhoneQuery, useUpadteAdminPhoneMutation} = userApi
+export const { useGetAllUserQuery, useCreatUserMutation, useDeleteUserDbMutation , useGetUserByEmailQuery , useUpdateCredMutation , useWithdrawCredMutation, useGetReferUsersQuery, useUpdatePhoneMutation, useGetAdminPhoneQuery, useUpadteBkashMutation, useUpadteNagadMutation, useUpadteRocketMutation,useUpadteUpayMutation} = userApi
