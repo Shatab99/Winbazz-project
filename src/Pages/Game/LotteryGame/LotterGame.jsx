@@ -4,6 +4,7 @@ import { VscLoading } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
 import { useGetUserByEmailQuery, useUpdateCredMutation, useWithdrawCredMutation } from '../../../Redux/features/EndPoints/userApi';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import LotteryBg from "../../../assets/Icons/LotteryGame/LotteryBg.jpg"
 
 function LotteryGame() {
     const [selectedNumbers, setSelectedNumbers] = useState([]);
@@ -78,7 +79,7 @@ function LotteryGame() {
 
 
     return (
-        <div className="p-2 text-center">
+        <div className="p-2 text-center   min-h-screen text-white" style={{ backgroundImage: `url(${LotteryBg})` }}>
             <div className='flex items-center justify-between mb-4 '>
                 <div className='border-2 border-white font-bold px-4 py-1 rounded-full text-sm '>
                     {isLoading ? <VscLoading className='animate-spin' /> : `${cred} BDT`}

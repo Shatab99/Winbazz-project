@@ -29,6 +29,7 @@ import CoinFlipGame from './Pages/Game/CoinFlip/CoinFlipGame';
 import AviatorGame from './Pages/Game/AviatorGame/AviatorGame';
 import Ludo from './Pages/Game/Ludo/Ludo';
 import LotteryGame from './Pages/Game/LotteryGame/LotterGame';
+import SlotGame from './Pages/Game/SlotGame/SlotGame';
 
 const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
   {
     path: "/lotteryGame",
     element: <PrivateRoute><LotteryGame/></PrivateRoute>
+  },
+  {
+    path: "/slotGame",
+    element: <PrivateRoute><SlotGame/></PrivateRoute>
   },
 
 ]);

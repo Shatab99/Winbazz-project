@@ -13,6 +13,7 @@ import Dice6 from '../../../assets/Icons/Ludo/6.png'
 import LudoResult from "./LudoResult";
 import LowBalWarning from "../../../Components/LowBalWarning";
 import StartSound from "../../../assets/Audios/Ludo/startSound.mp3"
+import LudoBg from "../../../assets/Icons/Ludo/LudoBg.jpg"
 
 
 const Ludo = () => {
@@ -79,7 +80,7 @@ const Ludo = () => {
     };
 
     return (
-        <div className="px-2 py-2">
+        <div className="p-2 text-white text-center  min-h-screen " style={{ backgroundImage: `url(${LudoBg})` }}>
             <div className='flex items-center justify-between mb-4 '>
                 <div className='border-2 border-white font-bold px-4 py-1 rounded-full text-sm '>
                     {isLoading ? <VscLoading className='animate-spin' /> : `${cred} BDT`}
