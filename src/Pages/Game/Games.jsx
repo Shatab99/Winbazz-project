@@ -3,6 +3,7 @@ import wheelIcon from '../../assets/Icons/GameIcons/wheelIcon.png'
 import CoinIcon from '../../assets/Icons/CoinFlip/CoinIcon.png'
 import AviatorIcon from "../../assets/Icons/Aviator/AviatorIcon.jpg"
 import LudoIcon from "../../assets/Icons/Ludo/ludoIcon.png"
+import LotteryIcon from '../../assets/Icons/LotteryGame/LotteryIcon.jpg'
 
 
 const Games = () => {
@@ -27,8 +28,8 @@ const Games = () => {
                     <p className='font-semibold'>Ludo</p>
                 </Link>
                 <Link to={'/lotteryGame'} className='flex flex-col items-center '>
-                    <img src={LudoIcon} alt="" className='w-20 h-20 rounded-full p-2'/>
-                    <p className='font-semibold'>Droping Ball</p>
+                    <img src={LotteryIcon} alt="" className='w-20 h-20 rounded-full p-2'/>
+                    <p className='font-semibold'>Lottery Game</p>
                 </Link>
             </div>
         </div>

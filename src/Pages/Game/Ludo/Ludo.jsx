@@ -12,6 +12,7 @@ import Dice5 from '../../../assets/Icons/Ludo/5.png'
 import Dice6 from '../../../assets/Icons/Ludo/6.png'
 import LudoResult from "./LudoResult";
 import LowBalWarning from "../../../Components/LowBalWarning";
+import StartSound from "../../../assets/Audios/Ludo/startSound.mp3"
 
 
 const Ludo = () => {
@@ -30,12 +31,19 @@ const Ludo = () => {
     const [isWin, setIsWin] = useState(false)
     const [isOpenLb, setIsOpenLb] = useState(false)
     const [err, setErr]= useState(null)
+    const [startSound] = useState(new Audio(StartSound))
 
     useEffect(() => {
         if (cred < 20) {
             setIsOpenLb(true)
         }
     }, [])
+
+    useEffect(()=>{
+        if(rolling){
+            startSound.play()
+        }
+    },[rolling, startSound])
 
     useEffect(()=>{
         if(bet > cred){
